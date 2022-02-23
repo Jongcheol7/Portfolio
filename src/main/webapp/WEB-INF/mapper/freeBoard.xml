@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="freeBoard">
+
+	<insert id="insert" parameterType="com.englishweb.vo.FreeBoardVO">
+		insert into freeboard(writer,title,content) values(#{writer},#{title},#{content})
+	</insert>
+	
+	<select id="getAllList" resultType="com.englishweb.vo.FreeBoardVO">
+		select * from freeboard
+	</select>
+	
+	<select id="getContentOne" resultType="com.englishweb.vo.FreeBoardVO" parameterType="int">
+		select * from freeboard 
+		where boardNo = #{boardNo}
+	</select>
+	
+	<select id="todayFreeBoard" resultType="int">
+		select count(*) from freeboard 
+		where regDate = CURDATE();
+	</select>
+	
+	<select id="getList10" resultType="com.englishweb.vo.FreeBoardVO">
+		select * from freeboard 
+		order by boardNo desc 
+		limit 10;
+	</select>
+
+
+</mapper>

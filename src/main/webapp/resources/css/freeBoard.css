@@ -1,0 +1,73 @@
+section{
+    position: relative;
+}
+section h1{
+    color: blue;
+    padding-left: 80px;
+    font-size: 1.5rem;
+}
+section .freeboardFrame{
+}
+.freeboardFrame table{
+    width: 90%;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+.freeboardFrame table tr td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.freeboardFrame tr{
+    display: flex;
+    height: 50px;
+    line-height: 50px;
+    
+}
+.freeboardFrame td{
+    /* padding: 20px; */
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.freeboardFrame td:nth-child(1){
+    width: 80px;
+}
+.freeboardFrame td:nth-child(2){
+    flex: 1;
+}
+.freeboardFrame td:nth-child(3){
+    width: 150px;
+}
+.freeboardFrame td:nth-child(4){
+    width: 150px;
+}
+.freeboardFrame td:nth-child(5){
+    width: 150px;
+}
+.freeboardFrame td{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.freeboardFrame #innerTable{
+    height: 50px;
+}
+.freeboardFrame #innerTable td{
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.freeboardFrame #innerTable td:nth-child(2){
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: left;
+    padding-left: 20px;
+}
+
+#writeBoard{
+    width: 70px;
+    padding: 5px 10px;
+    margin-top: 15px;
+    position: absolute;
+    right: 80px;
+}

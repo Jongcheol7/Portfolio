@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="wordBoard">
+
+	<insert id="insert" parameterType="com.englishweb.vo.WordBoardVO">
+		insert into wordboard(writer,word,content) values(#{writer},#{word},#{content})
+	</insert>
+	
+	<select id="getAllList" resultType="com.englishweb.vo.WordBoardVO">
+		select * from wordboard
+	</select>
+	
+	<select id="getContentOne" resultType="com.englishweb.vo.WordBoardVO" parameterType="int">
+		select * from wordboard 
+		where boardNo = #{boardNo}
+	</select>
+	
+	<select id="todayWordBoard" resultType="int">
+		select count(*) from wordboard 
+		where regDate = CURDATE();
+	</select>
+
+
+
+</mapper>
