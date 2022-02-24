@@ -10,7 +10,8 @@
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.FreeBoardVO">
-		select * from freeboard
+		select * from freeboard 
+		order by boardNo desc
 	</select>
 	
 	<select id="getContentOne" resultType="com.englishweb.vo.FreeBoardVO" parameterType="int">

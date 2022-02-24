@@ -26,7 +26,7 @@
                 <li><a href="/board/wordBoard">영단어</a></li>
                 <li><a href="#">영어표현</a></li>
                 <li><a href="#">이디엄</a></li>
-                <li><a href="#">영어녹음</a></li>
+                <li><a href="/board/recordBoard">영어녹음</a></li>
                 <li><a href="#">영어모임</a></li>
             </ul>
         </nav>

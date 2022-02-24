@@ -20,7 +20,7 @@
                 </div>
                 <div>
                     <p>금일 영어녹음</p>
-                    <div id="todayRecord"></div>
+                    <div id="todayRecord">${todayRecordBoard }</div>
                 </div>
             </div>
             <div class="middle">

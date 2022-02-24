@@ -1,6 +1,8 @@
 *{
     margin: 0;
     padding: 0; 
+    text-decoration: none;
+    color: black;
   }
   .container{
       display: flex;
@@ -16,8 +18,7 @@
   }
   section{
       flex: 1;
-      height: 100vh;
-      padding-top: 80px;
+      padding: 80px 0;
       /* background-image: url(../images/background.jpg); */
       background-repeat: no-repeat;
       background-position: center;
@@ -39,6 +40,10 @@
       font-size: 1.2rem;
       padding: 15px;
       border-top: 1px solid #000;
+  }
+  nav ul li:hover{
+      background-color: aliceblue;
+      transition: 0.4s;
   }
   nav ul li:last-child{
       border-bottom: 1px solid #000;
@@ -98,6 +103,7 @@
   #noticeBoard table tr {
       display: flex;
       border-bottom: 1px solid black;
+      text-align: center;
   }
   #noticeBoard table tr td:nth-child(1) {
       width: 50px;
@@ -130,6 +136,7 @@
   #freeBoard table tr {
       display: flex;
       border-bottom: 1px solid black;
+      text-align: center;
   }
   #freeBoard table tr td:nth-child(1) {
       width: 50px;
@@ -148,6 +155,9 @@
   #freeBoard table tr td:nth-child(4) {
       width: 100px;
       padding-left: 5px;
+  }
+  .middle table tr td{
+      padding: 3px 0;
   }
   /* 포토존 */
   .photo{

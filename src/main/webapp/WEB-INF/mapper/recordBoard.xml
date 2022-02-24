@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="recordBoard">
+
+	<insert id="insert" parameterType="com.englishweb.vo.RecordBoardVO">
+		insert into recordboard(writer,title,content,recordFileName) values(#{writer},#{title},#{content},#{recordFileName})
+	</insert>
+	
+	<select id="getAllList" resultType="com.englishweb.vo.RecordBoardVO">
+		select * from recordboard 
+		order by boardNo desc
+	</select>
+	
+	<select id="getContentOne" resultType="com.englishweb.vo.RecordBoardVO" parameterType="int">
+		select * from recordboard 
+		where boardNo = #{boardNo}
+	</select>
+	
+	<select id="todayRecordBoard" resultType="int">
+		select count(*) from recordboard 
+		where regDate = CURDATE();
+	</select>
+
+
+
+</mapper>

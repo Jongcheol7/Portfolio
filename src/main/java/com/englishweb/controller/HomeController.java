@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.englishweb.service.FreeBoardService;
+import com.englishweb.service.RecordBoardService;
 import com.englishweb.service.WordBoardService;
 
 @Controller
@@ -17,10 +18,13 @@ public class HomeController {
 	private FreeBoardService freeBoardService;
 	@Autowired
 	private WordBoardService wordBoardService;
+	@Autowired
+	private RecordBoardService recordBoardService;
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String home(Model model) {
 		model.addAttribute("todayWordBoard", wordBoardService.getTodayWordBoardNumber());
+		model.addAttribute("todayRecordBoard", recordBoardService.getTodayRecordBoardNumber());
 		model.addAttribute("freeBoardHome", freeBoardService.getFreeBoardList10());
 		return "index";
 	}

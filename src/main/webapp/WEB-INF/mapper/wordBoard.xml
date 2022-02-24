@@ -10,7 +10,8 @@
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.WordBoardVO">
-		select * from wordboard
+		select * from wordboard 
+		order by boardNo desc
 	</select>
 	
 	<select id="getContentOne" resultType="com.englishweb.vo.WordBoardVO" parameterType="int">

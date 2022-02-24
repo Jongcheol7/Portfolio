@@ -29,5 +29,11 @@
 	<resources mapping="/images/**" location="/resources/images/"/>
 	<resources mapping="/ckeditor/**" location="/resources/ckeditor/"/>
 	
+	<!-- 파일 업로드를 위한 multipartResolver 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800"/>
+		<beans:property name="maxUploadSizePerFile" value="52428800"/>
+		<beans:property name="maxInMemorySize" value="0"/> <!-- 메모리에 적재하지 않고 바로 하드에 저장 -->
+	</beans:bean>
 
 </beans:beans>
