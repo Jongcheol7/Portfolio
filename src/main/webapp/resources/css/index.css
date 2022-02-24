@@ -74,8 +74,8 @@
       border-radius: 10px;
   }
   #todayWord, #todayExp, #todayEdium, #todayRecord{
-  	font-size: 30px;
-  	line-height: 30px;
+  	font-size: 50px;
+  	line-height: 140px;
   }
   /* 공지사항 */
   .middle{

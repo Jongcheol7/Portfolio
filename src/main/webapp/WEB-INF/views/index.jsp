@@ -34,9 +34,9 @@
                                 <td>Date</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>1</td>
+                                <td>첫공지</td>
+                                <td>2022.02.24</td>
                              
                             </tr>
                         </table>

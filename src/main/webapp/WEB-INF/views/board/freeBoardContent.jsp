@@ -20,6 +20,7 @@
             		</tr>
             	</table>
             	<button type="submit" id="modify">수정</button>
+            	<button id="delete">삭제</button>
             	<button id="list">목록</button>
             </form>
         </section>
@@ -30,6 +31,10 @@
     	e.preventDefault();
         location.href = "/board/freeBoard";
     });
+    
+    $(function() {
+		
+	})
     
     
 

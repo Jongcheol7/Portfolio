@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="userMapper">
+	<select id="checkId" resultType="int" parameterType="String">
+		select count(*) from user 
+		where userId = #{userId}
+	</select>
+	
+	<insert id="register" parameterType="com.englishweb.vo.UserVO">
+		insert into user 
+		values(#{userId},#{userPw},#{userName},#{nickName},#{birth},#{email},#{gender},#{phone})
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="int" parameterType="com.englishweb.vo.UserVO">
+		select count(*) from user 
+		where #{userPw} = ( select userPw from user 
+						where userId=#{userId})
+	</select>
+</mapper>

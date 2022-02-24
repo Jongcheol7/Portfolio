@@ -28,6 +28,7 @@
 	<resources mapping="/css/**" location="/resources/css/"/>
 	<resources mapping="/images/**" location="/resources/images/"/>
 	<resources mapping="/ckeditor/**" location="/resources/ckeditor/"/>
+	<resources mapping="/js/**" location="/resources/js/"/>
 	
 	<!-- 파일 업로드를 위한 multipartResolver 설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

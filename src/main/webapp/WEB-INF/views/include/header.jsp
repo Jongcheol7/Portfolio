@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/freeBoard.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/join.css">
+    <script type="text/javascript" src="/js/jquery-3.6.0.min.js"/>
+
 </head>
 <body>
     <div class="container">
@@ -18,7 +22,8 @@
                 <a href="/"><img src="/images/logo.jpg" alt=""></a> 
                 <i class="fa-solid fa-user-hair-mullet"></i>
                 <p>사용자이름</p>
-                <button>로그아웃</button>
+                <button id="login">로그인</button>
+                <button id="join">회원가입</button>
             </div>
             <ul>
                 <li><a href="#">공지사항</a></li>
