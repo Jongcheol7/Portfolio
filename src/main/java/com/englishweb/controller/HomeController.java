@@ -26,6 +26,7 @@ public class HomeController {
 		model.addAttribute("todayWordBoard", wordBoardService.getTodayWordBoardNumber());
 		model.addAttribute("todayRecordBoard", recordBoardService.getTodayRecordBoardNumber());
 		model.addAttribute("freeBoardHome", freeBoardService.getFreeBoardList10());
+		System.out.println("index화면으로");
 		return "index";
 	}
 	

@@ -8,6 +8,18 @@
 		select count(*) from user 
 		where userId = #{userId}
 	</select>
+	<select id="checkNickName" resultType="int" parameterType="String">
+		select count(*) from user 
+		where nickName = #{nickName}
+	</select>
+	<select id="checkEmail" resultType="int" parameterType="String">
+		select count(*) from user 
+		where email = #{email}
+	</select>
+	<select id="checkPhone" resultType="int" parameterType="String">
+		select count(*) from user 
+		where phone = #{phone}
+	</select>
 	
 	<insert id="register" parameterType="com.englishweb.vo.UserVO">
 		insert into user 
@@ -20,4 +32,6 @@
 		where #{userPw} = ( select userPw from user 
 						where userId=#{userId})
 	</select>
+	
+	
 </mapper>

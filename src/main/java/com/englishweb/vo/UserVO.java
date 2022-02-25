@@ -1,5 +1,7 @@
 package com.englishweb.vo;
 
+import java.util.Date;
+
 public class UserVO {
 
 	private String userId;
@@ -10,6 +12,7 @@ public class UserVO {
 	private String userName;
 	private String phone;
 	private String birth;
+	private Date regDate;
 	public String getUserId() {
 		return userId;
 	}
@@ -58,11 +61,19 @@ public class UserVO {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
 	@Override
 	public String toString() {
 		return "UserVO [userId=" + userId + ", userPw=" + userPw + ", nickName=" + nickName + ", email=" + email
-				+ ", gender=" + gender + ", userName=" + userName + ", phone=" + phone + ", birth=" + birth + "]";
+				+ ", gender=" + gender + ", userName=" + userName + ", phone=" + phone + ", birth=" + birth
+				+ ", regDate=" + regDate + "]";
 	}
+	
 	
 	
 	
