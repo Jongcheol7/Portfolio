@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/freeBoard.css">
-    <link rel="stylesheet" href="/css/login.css">
-    <link rel="stylesheet" href="/css/join.css">
+    <link rel="stylesheet" href="${path}/css/index.css?after">
+    <link rel="stylesheet" href="${path}/css/freeBoard.css?after">
+    <link rel="stylesheet" href="${path}/css/login.css?after">
+    <link rel="stylesheet" href="${path}/css/register.css?after">
+    <link rel="stylesheet" href="${path}/resources/css/register.css?after">
     <script src="js/jquery-3.6.0.min.js"></script>
 
 </head>

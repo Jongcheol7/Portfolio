@@ -108,5 +108,13 @@ public class LoginJoin {
 			return "OK";
 		}
 	}
+	
+	// 회원가입 요청 처리
+	@PostMapping("/join")
+	public String register(@RequestBody UserVO user) {
+		System.out.println("register로 넘어온 uservo : " + user);
+		userService.register(user);
+		return "joinSuccess";
+	}
 
 }

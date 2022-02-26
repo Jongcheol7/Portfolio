@@ -54,7 +54,7 @@ public class UserService {
 	
 	// 회원 가입 기능
 	public void register(UserVO user) {
-		
+		sqlSessionTemplate.insert("userMapper.register", user);
 	}
 	
 	// 회원 정보 조회 기능

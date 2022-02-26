@@ -22,7 +22,7 @@
 	</select>
 	
 	<insert id="register" parameterType="com.englishweb.vo.UserVO">
-		insert into user 
+		insert into user(userId,userPw,userName,nickName,birth,email,gender,phone)  
 		values(#{userId},#{userPw},#{userName},#{nickName},#{birth},#{email},#{gender},#{phone})
 	</insert>
 	
