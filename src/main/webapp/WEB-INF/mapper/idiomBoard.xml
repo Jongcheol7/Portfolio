@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="idiomBoard">
+
+	<insert id="insert" parameterType="com.englishweb.vo.IdiomBoardVO">
+		insert into idiomboard(writer,idiom,content) values(#{writer},#{idiom},#{content})
+	</insert>
+	
+	<select id="getAllList" resultType="com.englishweb.vo.IdiomBoardVO">
+		select * from idiomboard 
+		order by boardNo desc
+	</select>
+	
+	<select id="getContentOne" resultType="com.englishweb.vo.IdiomBoardVO" parameterType="int">
+		select * from idiomboard 
+		where boardNo = #{boardNo}
+	</select>
+	
+	<select id="todayIdiomBoard" resultType="int">
+		select count(*) from idiomboard 
+		where regDate = CURDATE();
+	</select>
+
+
+
+</mapper>

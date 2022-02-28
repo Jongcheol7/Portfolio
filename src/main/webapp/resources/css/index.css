@@ -73,7 +73,7 @@
       box-shadow: 0px 0px 5px black;
       border-radius: 10px;
   }
-  #todayWord, #todayExp, #todayEdium, #todayRecord{
+  #todayWord, #todayExp, #todayIdiom, #todayRecord{
   	font-size: 50px;
   	line-height: 140px;
   }

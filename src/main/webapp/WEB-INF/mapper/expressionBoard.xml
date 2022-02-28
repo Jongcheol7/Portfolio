@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="expressionBoard">
+
+	<insert id="insert" parameterType="com.englishweb.vo.ExpressionBoardVO">
+		insert into expressionboard(writer,expression,content) values(#{writer},#{expression},#{content})
+	</insert>
+	
+	<select id="getAllList" resultType="com.englishweb.vo.ExpressionBoardVO">
+		select * from expressionboard 
+		order by boardNo desc
+	</select>
+	
+	<select id="getContentOne" resultType="com.englishweb.vo.ExpressionBoardVO" parameterType="int">
+		select * from expressionboard 
+		where boardNo = #{boardNo}
+	</select>
+	
+	<select id="todayExpressionBoard" resultType="int">
+		select count(*) from expressionboard 
+		where regDate = CURDATE();
+	</select>
+
+
+
+</mapper>

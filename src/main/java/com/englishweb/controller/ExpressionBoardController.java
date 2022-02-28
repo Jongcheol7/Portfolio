@@ -10,43 +10,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.englishweb.service.ExpressionBoardService;
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.service.WordBoardService;
+import com.englishweb.vo.ExpressionBoardVO;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.WordBoardVO;
 
 @Controller
 @RequestMapping("/board")
-public class WordBoardController {
+public class ExpressionBoardController {
 	@Autowired
-	private WordBoardService service;
+	private ExpressionBoardService service;
 	
 	// 자유게시판 목록 불러오기
-	@GetMapping("/wordBoard")
-	public void getWordBoardPage(Model model) {
-		List<WordBoardVO> list = service.getWordBoardList();
+	@GetMapping("/expressionBoard")
+	public void getExpressionBoardPage(Model model) {
+		List<ExpressionBoardVO> list = service.getExpressionBoardList();
 		model.addAttribute("list", list);
 	}
 	
 	// 자유게시판 글쓰기 페이지 요청
-	@GetMapping("/wordBoardWrite")
-	public void getWordBoardWritePage() {
+	@GetMapping("/expressionBoardWrite")
+	public void getExpressionBoardWritePage() {
 	}
 	
 	// 자유게시판 글 등록
-	@PostMapping("/wordBoardWrite")
-	public String registerWordBoard(WordBoardVO vo) {
-		service.insertWordBoard(vo);
-		return "redirect:/board/wordBoard";
+	@PostMapping("/expressionBoardWrite")
+	public String registerExpressionBoard(ExpressionBoardVO vo) {
+		service.insertExpressionBoard(vo);
+		return "redirect:/board/expressionBoard";
 	}
 
 	// 자유게시판 글 상세내용 확인
-	@GetMapping("/wordBoardContent")
-	public String getWordBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) {
-		WordBoardVO vo = service.getWordBoardOne(boardNo);
-		System.out.println(vo.getWord());
+	@GetMapping("/expressionBoardContent")
+	public String getExpressionBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) {
+		ExpressionBoardVO vo = service.getExpressionBoardOne(boardNo);
+		System.out.println(vo.getExpression());
 		model.addAttribute("vo", vo);
-		return "board/wordBoardContent";
+		return "board/expressionBoardContent";
 	}
 	
 	

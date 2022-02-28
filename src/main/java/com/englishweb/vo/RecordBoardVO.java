@@ -70,6 +70,12 @@ public class RecordBoardVO {
 	public void setRecordFileName(String recordFileName) {
 		this.recordFileName = recordFileName;
 	}
+	@Override
+	public String toString() {
+		return "RecordBoardVO [id=" + id + ", boardNo=" + boardNo + ", title=" + title + ", content=" + content
+				+ ", writer=" + writer + ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", recordFile=" + recordFile
+				+ ", recordFileName=" + recordFileName + "]";
+	}
 	
 	
 

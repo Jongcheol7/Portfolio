@@ -12,11 +12,11 @@
                 </div>
                 <div>
                     <p>금일 영어표현</p>
-                    <div id="todayExp"></div>
+                    <div id="todayExp">${todayExpressionBoard }</div>
                 </div>
                 <div>
                     <p>금일 이디엄</p>
-                    <div id="todayEdium"></div>
+                    <div id="todayIdiom">${todayIdiomBoard }</div>
                 </div>
                 <div>
                     <p>금일 영어녹음</p>

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${path}/css/login.css?after">
     <link rel="stylesheet" href="${path}/css/register.css?after">
     <link rel="stylesheet" href="${path}/resources/css/register.css?after">
+    <link rel="stylesheet" href="${path}/resources/css/content.css?after">
     <script src="js/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -30,9 +31,9 @@
                 <li><a href="#">공지사항</a></li>
                 <li><a href="/board/freeBoard">자유게시판</a></li>
                 <li><a href="/board/wordBoard">영단어</a></li>
-                <li><a href="#">영어표현</a></li>
-                <li><a href="#">이디엄</a></li>
+                <li><a href="/board/expressionBoard">영어표현</a></li>
+                <li><a href="/board/idiomBoard">이디엄</a></li>
                 <li><a href="/board/recordBoard">영어녹음</a></li>
-                <li><a href="#">영어모임</a></li>
+                <li><a href="/board/meetingBoard">영어모임</a></li>
             </ul>
         </nav>

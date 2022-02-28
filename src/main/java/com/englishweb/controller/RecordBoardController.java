@@ -56,7 +56,7 @@ public class RecordBoardController {
 			fileName = uuid + "." + ext;
 			recordFile.transferTo(new File("C:\\EnglishRecord\\"+ fileName));
 		}
-	
+		System.out.println(vo);
 	
 		service.insertRecordBoard(vo);
 		return "redirect:/board/recordBoard";
