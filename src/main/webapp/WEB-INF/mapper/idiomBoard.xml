@@ -24,6 +24,14 @@
 		where regDate = CURDATE();
 	</select>
 
-
+	<update id="update">
+		update idiomboard set idiom=#{idiom}, content=#{content} 
+		where boardNo = #{boardNo}
+	</update>
+	
+	<delete id="delete">
+		delete from idiomboard 
+		where boardNo = #{boardNo}
+	</delete>
 
 </mapper>

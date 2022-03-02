@@ -59,8 +59,7 @@ public class UserService {
 	
 	// 회원 정보 조회 기능
 	public UserVO selectOne(String userId) {
-		
-		return null;
+		return sqlSessionTemplate.selectOne("userMapper.selectOne", userId);
 	}
 	
 	// 회훤 탈퇴 기능

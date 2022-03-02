@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.IdiomBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.WordBoardVO;
 @Service
 public class IdiomBoardService {
@@ -40,5 +41,15 @@ public class IdiomBoardService {
 	public List<IdiomBoardVO> getIdiomBoardList10(){
 		List<IdiomBoardVO> list = sqlSessionTemplate.selectList("idiomBoard.getList10");
 		return list;
+	}
+	
+	// 수정처리
+	public void update(IdiomBoardVO vo) {
+		sqlSessionTemplate.update("idiomBoard.update", vo);
+	}
+	
+	// 삭제처리
+	public void delete(int boardNo) {
+		sqlSessionTemplate.delete("idiomBoard.delete", boardNo);
 	}
 }

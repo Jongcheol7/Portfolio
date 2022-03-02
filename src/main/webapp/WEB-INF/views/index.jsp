@@ -33,9 +33,9 @@
                                 <td>Title</td>
                                 <td>Date</td>
                             </tr>
-                            <tr>
+                            <tr class="noticeBoardHomeHover">
                                 <td>1</td>
-                                <td>첫공지</td>
+                                <td class="title">첫공지</td>
                                 <td>2022.02.24</td>
                              
                             </tr>
@@ -53,9 +53,9 @@
                                 <td>Date</td>
                             </tr>
                             <c:forEach var="freeBoardHome" items="${freeBoardHome }">
-                            <tr>
+                            <tr class="freeBoardHomeHover">
                                 <td>${freeBoardHome.boardNo }</td>
-                                <td><a href="/board/freeBoardContent?boardNo=${freeBoardHome.boardNo }">${freeBoardHome.title }</a></td>
+                                <td class="title"><a href="/board/freeBoardContent?boardNo=${freeBoardHome.boardNo }">${freeBoardHome.title }</a></td>
                                 <td>${freeBoardHome.writer }</td>
                                 <td><fmt:formatDate value="${freeBoardHome.regDate }" pattern="yyyy.MM.dd"/> </td>
                             </tr>
@@ -79,4 +79,5 @@
 <!--     </div>
 </body>
 </html> -->
+
 <jsp:include page="include/footer.jsp"/>

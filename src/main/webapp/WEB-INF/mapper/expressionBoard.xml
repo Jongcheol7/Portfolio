@@ -24,6 +24,14 @@
 		where regDate = CURDATE();
 	</select>
 
-
+	<update id="update">
+		update expressionboard set expression=#{expression}, content=#{content} 
+		where boardNo = #{boardNo}
+	</update>
+	
+	<delete id="delete">
+		delete from expressionboard 
+		where boardNo = #{boardNo}
+	</delete>
 
 </mapper>

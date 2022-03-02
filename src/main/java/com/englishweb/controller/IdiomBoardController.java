@@ -15,6 +15,7 @@ import com.englishweb.service.IdiomBoardService;
 import com.englishweb.service.WordBoardService;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.IdiomBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.WordBoardVO;
 
 @Controller
@@ -51,6 +52,24 @@ public class IdiomBoardController {
 		return "board/idiomBoardContent";
 	}
 	
-	
+	// 수정화면 보여주기
+	@GetMapping("/idiomBoardModify")
+	public String updateIdiomBoardForm(int boardNo, Model model) {
+		model.addAttribute("vo", service.getIdiomBoardOne(boardNo));
+		return "/board/idiomBoardUpdate";
+	}
+	// 수정처리
+	@PostMapping("/idiomBoardModify")
+	public String updateIdiomBoard(IdiomBoardVO vo) {
+		service.update(vo);
+		return "redirect:/board/idiomBoard";
+	}
+	// 삭제처리
+	@PostMapping("/idiomBoardDetete")
+	public String deleteIdiomBoard(int boardNo) {
+		service.delete(boardNo);
+		return "redirect:/board/idiomBoard";
+	}
+
 
 }

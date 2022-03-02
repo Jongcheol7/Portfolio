@@ -24,6 +24,15 @@
 		where regDate = CURDATE();
 	</select>
 
+	<update id="update">
+		update recordboard set title=#{title}, content=#{content} 
+		where boardNo = #{boardNo}
+	</update>
+	
+	<delete id="delete">
+		delete from recordboard 
+		where boardNo = #{boardNo}
+	</delete>
 
 
 </mapper>

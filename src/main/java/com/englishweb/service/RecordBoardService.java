@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.englishweb.vo.FreeBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.RecordBoardVO;
 
 @Service
@@ -43,6 +44,16 @@ public class RecordBoardService {
 	public List<RecordBoardVO> getRecordBoardList10(){
 		List<RecordBoardVO> list = sqlSessionTemplate.selectList("recordBoard.getList10");
 		return list;
+	}
+	
+	// 수정처리
+	public void update(RecordBoardVO vo) {
+		sqlSessionTemplate.update("recordBoard.update", vo);
+	}
+	
+	// 삭제처리
+	public void delete(int boardNo) {
+		sqlSessionTemplate.delete("recordBoard.delete", boardNo);
 	}
 	
 }

@@ -40,8 +40,11 @@ import com.englishweb.vo.FileUploadVO;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.RecordBoardVO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.coobird.thumbnailator.Thumbnailator;
+import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/board")
@@ -50,7 +53,7 @@ public class MeetingBoardController {
 	@Autowired
 	private MeetingBoardService service;
 	
-	// 영어녹음게시판 목록 불러오기
+	// 목록 불러오기
 	@GetMapping("/meetingBoard")
 	public void getMeetingBoardPage(Model model) {
 		List<MeetingBoardVO> list = service.getMeetingBoardList();
@@ -131,7 +134,7 @@ public class MeetingBoardController {
 	
 	// 영어녹음게시판 글 상세내용 확인
 	@GetMapping("/meetingBoardContent")
-	public String getMeetingBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) {
+	public String getMeetingBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) throws JsonProcessingException {
 		MeetingBoardVO vo = service.getMeetingBoardOne(boardNo);
 		System.out.println(vo);
 		// 구분자 , 로 파일 이름을 붙여준 파일명
@@ -152,6 +155,17 @@ public class MeetingBoardController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("eachName", eachName);
 		model.addAttribute("eachNameU", eachNameU);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonText = mapper.writeValueAsString(eachNameU);
+		JSONArray jsonArray = new JSONArray();
+		model.addAttribute("filenames", jsonArray.fromObject(eachNameU));
+		model.addAttribute("aa", "aa");
+		String path = "C:\\upload";
+		for(int i=0; i<eachNameU.length; i++) {
+			
+		}
+		
 		return "board/meetingBoardContent";
 	}
 	
@@ -191,6 +205,24 @@ public class MeetingBoardController {
 			return result;
 		}
 	
+		// 수정화면 보여주기
+		@GetMapping("/meetingBoardModify")
+		public String updateMeetingBoardForm(int boardNo, Model model) {
+			model.addAttribute("vo", service.getMeetingBoardOne(boardNo));
+			return "/board/meetingBoardUpdate";
+		}
+		// 수정처리
+		@PostMapping("/meetingBoardModify")
+		public String updateMeetingBoard(MeetingBoardVO vo) {
+			service.update(vo);
+			return "redirect:/board/meetingBoard";
+		}
+		// 삭제처리
+		@PostMapping("/meetingBoardDetete")
+		public String deleteMeetingBoard(int boardNo) {
+			service.delete(boardNo);
+			return "redirect:/board/meetingBoard";
+		}
 	
 
 }

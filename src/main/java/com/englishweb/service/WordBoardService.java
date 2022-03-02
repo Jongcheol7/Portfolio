@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.englishweb.vo.FreeBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.WordBoardVO;
 @Service
 public class WordBoardService {
@@ -39,5 +40,15 @@ public class WordBoardService {
 	public List<WordBoardVO> getWordBoardList10(){
 		List<WordBoardVO> list = sqlSessionTemplate.selectList("wordBoard.getList10");
 		return list;
+	}
+	
+	// 수정처리
+	public void update(WordBoardVO vo) {
+		sqlSessionTemplate.update("wordBoard.update", vo);
+	}
+	
+	// 삭제처리
+	public void delete(int boardNo) {
+		sqlSessionTemplate.delete("wordBoard.delete", boardNo);
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.englishweb.vo.FreeBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 
 @Service
 public class FreeBoardService {
@@ -43,4 +44,14 @@ public class FreeBoardService {
 		return list;
 	}
 	
+	
+	// 수정처리
+	public void update(FreeBoardVO vo) {
+		sqlSessionTemplate.update("freeBoard.update", vo);
+	}
+	
+	// 삭제처리
+	public void delete(int boardNo) {
+		sqlSessionTemplate.delete("freeBoard.delete", boardNo);
+	}
 }

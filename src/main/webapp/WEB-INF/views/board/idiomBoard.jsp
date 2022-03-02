@@ -17,7 +17,7 @@
                     <c:forEach var="list" items="${list }">
                     <tr id="innerTable">
                     	<td>${list.boardNo }</td>
-                        <td><a href="/board/wordBoardContent?boardNo=${list.boardNo }">${list.idiom }</a></td>
+                        <td><a href="/board/idiomBoardContent?boardNo=${list.boardNo }">${list.idiom }</a></td>
                         <td>${list.writer }</td>
                         <td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
                         <td>${list.viewCnt }</td>
@@ -25,9 +25,11 @@
                     </c:forEach>
                    
                 </table>
-                
+                <div class="buttons">
+                    <button id="writeBoard">글작성</button>
+                </div>    
             </div>
-            <button id="writeBoard">글작성</button>
+           
         </section>
         
 <script>

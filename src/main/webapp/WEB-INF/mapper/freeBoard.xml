@@ -30,5 +30,13 @@
 		limit 10;
 	</select>
 
-
+	<update id="update">
+		update freeboard set title=#{title}, content=#{content} 
+		where boardNo = #{boardNo}
+	</update>
+	
+	<delete id="delete">
+		delete from freeboard 
+		where boardNo = #{boardNo}
+	</delete>
 </mapper>

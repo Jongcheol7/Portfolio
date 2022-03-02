@@ -1,4 +1,47 @@
 @charset "UTF-8";
-#downloadList{
-	
+section{
+    position: relative;
+    /* margin: 0 auto; */
+    margin-left: 40px;
+}
+section h1{
+    color: orange;
+    text-shadow: 1px 1px 2px black;
+    padding-left: 80px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.contentForm{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.section .contentTable{
+}
+.contentTable tr td{
+    border: 1px solid black;
+}
+.contentTable tr td:nth-child(1){
+    width: 130px;
+    text-align: center;
+    font-weight: bold;
+}
+.contentTable tr td:nth-child(2){
+    
+}
+.contentTable td{
+    padding: 4px 10px;
+}
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+#modify, #list, #delete, #register{
+    padding: 4px 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    
 }

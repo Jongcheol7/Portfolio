@@ -6,16 +6,17 @@
             	<table class="contentTable">
             		<tr>
             			<td><label for="idiom">이디엄</label></td>
-            			<td><input type="text" id="idiom" name="idiom" style="width: 100%"></td>
+            			<td><input type="text" id="idiom" name="idiom" value="${vo.idiom }" style="width: 100%"></td>
             		</tr>
             		<tr>
             			<td><label for="writer">작성자</label></td>
-            			<td><input type="text" id="writer" name="writer" style="width: 100%"></td>
+            			<td><input type="text" id="writer" name="writer" value="${vo.writer }" style="width: 100%" readonly="readonly"></td>
             		</tr>
             		<tr>
             			<td><label for="content">내용</label></td>
-            			<td>
-            				<textarea rows="40" cols="150" name="content"></textarea>
+            			<td contenteditable="true" id="content" name="content" style="height: 100px;">
+		                    <input type="text" name="content" value="${vo.content }" style="width: 100%; height: 100%">
+		                  
 		                </td>
             		</tr>
             	</table>

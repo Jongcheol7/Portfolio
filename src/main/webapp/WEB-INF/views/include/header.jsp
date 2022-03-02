@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="${path}/css/freeBoard.css?after">
     <link rel="stylesheet" href="${path}/css/login.css?after">
     <link rel="stylesheet" href="${path}/css/register.css?after">
-    <link rel="stylesheet" href="${path}/resources/css/register.css?after">
-    <link rel="stylesheet" href="${path}/resources/css/content.css?after">
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="${path}/css/register.css?after">
+    <link rel="stylesheet" href="${path}/css/content.css??ver=1.1">
+    <script src="/js/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>

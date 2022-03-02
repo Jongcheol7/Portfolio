@@ -15,6 +15,7 @@ import com.englishweb.service.FreeBoardService;
 import com.englishweb.service.WordBoardService;
 import com.englishweb.vo.ExpressionBoardVO;
 import com.englishweb.vo.FreeBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.WordBoardVO;
 
 @Controller
@@ -51,6 +52,24 @@ public class ExpressionBoardController {
 		return "board/expressionBoardContent";
 	}
 	
-	
+	// 수정화면 보여주기
+	@GetMapping("/expressionBoardModify")
+	public String updateExpressionBoardForm(int boardNo, Model model) {
+		model.addAttribute("vo", service.getExpressionBoardOne(boardNo));
+		return "/board/expressionBoardUpdate";
+	}
+	// 수정처리
+	@PostMapping("/expressionBoardModify")
+	public String updateExpressionBoard(ExpressionBoardVO vo) {
+		service.update(vo);
+		return "redirect:/board/expressionBoard";
+	}
+	// 삭제처리
+	@PostMapping("/expressionBoardDetete")
+	public String deleteExpressionBoard(int boardNo) {
+		service.delete(boardNo);
+		return "redirect:/board/expressionBoard";
+	}
+
 
 }

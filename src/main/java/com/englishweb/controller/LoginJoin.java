@@ -116,5 +116,24 @@ public class LoginJoin {
 		userService.register(user);
 		return "joinSuccess";
 	}
+	// 로그인 요청 처리
+	@PostMapping("/loginCheck")
+	public String loginCheck(@RequestBody UserVO inputData) {
+		System.out.println("id : " + inputData.getUserId() );
+		System.out.println("pw : " + inputData.getUserPw());
+		String result = null;
+		UserVO dbData = userService.selectOne(inputData.getUserId());
+		if(dbData != null) {
+			if(dbData.getUserPw().equals(inputData.getUserPw())) {
+				result = "loginSuccess";
+				
+			}else {
+				result = "pwFail";
+			}
+		}else {
+			result = "idFail";
+		}
+		return result;
+	}
 
 }

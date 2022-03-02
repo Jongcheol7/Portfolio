@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.service.WordBoardService;
 import com.englishweb.vo.FreeBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.WordBoardVO;
 
 @Controller
@@ -49,6 +50,24 @@ public class WordBoardController {
 		return "board/wordBoardContent";
 	}
 	
+	// 수정화면 보여주기
+	@GetMapping("/wordBoardModify")
+	public String updateWordBoardForm(int boardNo, Model model) {
+		model.addAttribute("vo", service.getWordBoardOne(boardNo));
+		return "/board/wordBoardUpdate";
+	}
+	// 수정처리
+	@PostMapping("/wordBoardModify")
+	public String updateWordBoard(WordBoardVO vo) {
+		service.update(vo);
+		return "redirect:/board/wordBoard";
+	}
+	// 삭제처리
+	@PostMapping("/wordBoardDetete")
+	public String deleteWordBoard(int boardNo) {
+		service.delete(boardNo);
+		return "redirect:/board/wordBoard";
+	}
 	
 
 }

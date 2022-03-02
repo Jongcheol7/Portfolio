@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.service.RecordBoardService;
 import com.englishweb.vo.FreeBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.RecordBoardVO;
 
 @Controller
@@ -72,6 +73,25 @@ public class RecordBoardController {
 		return "board/recordBoardContent";
 	}
 	
+	// 수정화면 보여주기
+	@GetMapping("/recordBoardModify")
+	public String updateRecordBoardForm(int boardNo, Model model) {
+		model.addAttribute("vo", service.getRecordBoardOne(boardNo));
+		return "/board/recordBoardUpdate";
+	}
+	// 수정처리
+	@PostMapping("/recordBoardModify")
+	public String updateRecordBoard(RecordBoardVO vo) {
+		service.update(vo);
+		return "redirect:/board/recordBoard";
+	}
+	// 삭제처리
+	@PostMapping("/recordBoardDetete")
+	public String deleteRecordBoard(int boardNo) {
+		service.delete(boardNo);
+		return "redirect:/board/recordBoard";
+	}
+
 	
 
 }

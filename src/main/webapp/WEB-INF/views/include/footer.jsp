@@ -11,10 +11,10 @@
         <div class="content">
             <div class="left">
                 <form action="#" method="post">
-                    <input type="text" placeholder="아이디" name="userId" id="id">
-                    <input type="password" placeholder="비밀번호" name="userPw" id="pw">
+                    <input type="text" placeholder="아이디" name="userId" id="signInId">
+                    <input type="password" placeholder="비밀번호" name="userPw" id="signInPw">
                     <label for="save-id"><input type="checkbox" name="save-id" id="save-id">아이디 저장</label>
-                    <button type="submit">로그인</button>
+                    <button type="submit" id="signInBtn">로그인</button>
                     <ul>
                         <li><a href="#">ID/PW 찾기</a></li>
                         <li><a href="#">회원가입</a></li>
@@ -116,7 +116,7 @@
 		const expEmail = RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
 		const expYear = RegExp(/^[1-2]{1}[1-9]{3}$/);
 		const expDay = RegExp(/(0[1-9]|1[1-9]|2[1-9]|3[0-1])$/);
-		const expPhone = RegExp(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g); 
+		const expPhone = RegExp(/^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/); 
 		
 		let chk1 = false, chk2 = false, chk3 = false, chk4 = false, 
 			chk5 = false, chk6 = false, chk7 = false, chk8 = false, chk9 = false;
@@ -325,7 +325,7 @@
 			// 전화번호 유효성 검사
 			else if(!expPhone.test($("#phone").val())){
 				$("#phone").css("background-color","pink");
-				$("#phoneSpace").html('(-)없이 입력해 주세요');
+				$("#phoneSpace").html('ex)010-0000-0000');
 				chk7 = false;
 			}
 			// 전화번호 중복확인 비동기 처리
@@ -407,7 +407,7 @@
 				const email = $("#email").val();
 				const birthYear = $("#birthYear").val();
 				const birthMonth = $("#birthMonth option:selected").val();
-				if(birthMonth < 10) birthMonth = "0" + birthMonth;
+				/* if(birthMonth < 10) birthMonth = "0" + birthMonth; */
 				const birthDay = $("#birthDay").val();
 				const birth = birthYear + birthMonth + birthDay;
 				const gender = $("input[name='gender']:checked").val();
@@ -445,6 +445,7 @@
 						console.log("통신 성공 : " + result);
 						if(result === "joinSuccess"){
 							alert("회원가입 성공");
+							colsole.log("회원가입 성공");
 							location.href="/";
 						}else{
 							alert("회원가입 실패");
@@ -458,6 +459,85 @@
 				alert("입력 정보를 다시 확인하세요");
 			}
 		});
+		
+		////////////////////////////////////////
+		// 로그인 검증
+		// ID입력값 검증
+
+		$("#signInId").on('keyup', function() {
+			if($("#signInId").val() === ""){
+				$("#signInId").css("background-color","pink");
+				chk1 = false;
+			}
+			// ID 유효성 검사
+			else if(!expId.test($("#signInId").val())){
+				$("#signInId").css("background-color","pink");
+				chk1 = false;
+			}else{
+				$("#signInId").css("background-color","aqua");
+				chk1 = true;
+			}
+		});
+		//////////////////
+		// 비밀번호 입력값 검증
+		
+		$("#signInPw").on('keyup', function() {
+			if($("#signInPw").val() === ""){
+				$("#userPw").css("background-color","pink");
+				chk2 = false;
+			}else if(!expPw.test($(this).val())){
+				$("#signInPw").css("background-color","pink");
+				chk2 = false;
+			}else{
+				$("#signInPw").css("background-color","aqua");
+				chk2 = true;
+			}
+		}); 
+		
+		// 로그인 버튼 클릭 이벤트
+		
+		$("#signInBtn").click(function(e) {
+			e.preventDefault();
+			console.log("로그인 버튼 클릭됨");
+			if(chk1 && chk2){
+				const id = $("#signInId").val();
+				const pw = $("#signInPw").val();
+				console.log("id : " +id);
+				const userInfo = {
+						userId : id,
+						userPw : pw
+				};
+				$.ajax({
+					type : "POST",
+					url : "/loginCheck",
+					headers : {
+						"Content-Type" : "application/json"
+					},
+					data : JSON.stringify(userInfo),
+					dataType : "text",
+					success : function(result) {
+						console.log("result : " + result);
+						if(result === "idFail"){
+							console.log("아이디가 없습니다");
+						}else if(result === "pwFail"){
+							console.log("비밀번호가 틀렸습니다");
+						}else if(result === "loginSuccess"){
+							console.log("로그인 성공");
+							
+							    document.getElementsByClassName("login-modal")[0].style.display = "none";
+							    document.getElementsByClassName("container")[0].style.opacity = 1;
+							
+						}
+					},
+					error : function() {
+						console.log("통신 실패!");
+					}
+				});
+			}else{
+				alert("입력 정보를 다시 확인하세요");
+			}
+		});
+		
 		
 	}); //end jQuery
 </script>

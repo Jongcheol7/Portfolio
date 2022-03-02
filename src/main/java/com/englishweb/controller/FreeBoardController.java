@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.vo.FreeBoardVO;
+import com.englishweb.vo.MeetingBoardVO;
 
 @Controller
 @RequestMapping("/board")
@@ -48,6 +49,24 @@ public class FreeBoardController {
 		return "board/freeBoardContent";
 	}
 	
+	// 수정화면 보여주기
+	@GetMapping("/freeBoardModify")
+	public String updateFreeBoardForm(int boardNo, Model model) {
+		model.addAttribute("vo", service.getFreeBoardOne(boardNo));
+		return "/board/freeBoardUpdate";
+	}
+	// 수정처리
+	@PostMapping("/freeBoardModify")
+	public String updateFreeBoard(FreeBoardVO vo) {
+		service.update(vo);
+		return "redirect:/board/freeBoard";
+	}
+	// 삭제처리
+	@PostMapping("/freeBoardDetete")
+	public String deleteFreeBoard(int boardNo) {
+		service.delete(boardNo);
+		return "redirect:/board/freeBoard";
+	}
 	
 
 }

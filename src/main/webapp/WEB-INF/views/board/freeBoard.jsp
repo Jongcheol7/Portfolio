@@ -26,8 +26,11 @@
                    
                 </table>
                 
+                <div class="buttons">
+                    <button id="writeBoard">글작성</button>
+                </div>
+                
             </div>
-            <button id="writeBoard">글작성</button>
         </section>
         
 <script>

@@ -2,15 +2,19 @@ section{
     position: relative;
 }
 section h1{
-    color: blue;
+    color: orange;
+    text-shadow: 1px 1px 2px black;
     padding-left: 80px;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 section .freeboardFrame{
+    display: flex;
+    flex-direction: column;
 }
 .freeboardFrame table{
-    width: 90%;
+    width: 100%;
     padding-top: 20px;
+    padding-left: 50px;
     margin: 0 auto;
 }
 .freeboardFrame table tr td{
@@ -52,6 +56,10 @@ section .freeboardFrame{
 .freeboardFrame #innerTable{
     height: 50px;
 }
+.freeboardFrame #innerTable:hover{
+    background-color: antiquewhite;
+    transition: 0.2s;
+}
 .freeboardFrame #innerTable td{
     font-weight: bold;
     font-size: 1.1rem;
@@ -66,8 +74,7 @@ section .freeboardFrame{
 
 #writeBoard{
     width: 70px;
-    padding: 5px 10px;
-    margin-top: 15px;
-    position: absolute;
-    right: 80px;
+    padding: 4px 10px;
+    font-weight: bold;
+    margin: 5px 5px 0 0;
 }

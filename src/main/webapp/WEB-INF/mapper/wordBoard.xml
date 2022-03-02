@@ -24,6 +24,14 @@
 		where regDate = CURDATE();
 	</select>
 
-
+	<update id="update">
+		update wordboard set word=#{word}, content=#{content} 
+		where boardNo = #{boardNo}
+	</update>
+	
+	<delete id="delete">
+		delete from wordboard 
+		where boardNo = #{boardNo}
+	</delete>
 
 </mapper>

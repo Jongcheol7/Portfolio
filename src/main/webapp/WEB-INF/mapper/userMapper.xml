@@ -33,5 +33,9 @@
 						where userId=#{userId})
 	</select>
 	
+	<select id="selectOne" resultType="com.englishweb.vo.UserVO">
+		select * from user 
+		where userId = #{userId}
+	</select>
 	
 </mapper>

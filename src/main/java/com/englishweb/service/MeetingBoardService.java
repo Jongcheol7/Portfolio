@@ -35,15 +35,14 @@ public class MeetingBoardService {
 		return vo;
 	}
 	
-	// 오늘 등록된 자유게시판 갯수 가져오기
-	public int getTodayMeetingBoardNumber() {
-		return sqlSessionTemplate.selectOne("recordBoard.todayRecordBoard");
+
+	// 수정처리
+	public void update(MeetingBoardVO vo) {
+		sqlSessionTemplate.update("meetingBoard.update", vo);
 	}
 	
-	// 메인화면에 자유게시판 10개만 보여주기
-	public List<MeetingBoardVO> getMeetingBoardList10(){
-		List<MeetingBoardVO> list = sqlSessionTemplate.selectList("recordBoard.getList10");
-		return list;
+	// 삭제처리
+	public void delete(int boardNo) {
+		sqlSessionTemplate.delete("meetingBoard.delete", boardNo);
 	}
-	
 }
