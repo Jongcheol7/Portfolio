@@ -15,6 +15,7 @@ public class MeetingBoardVO {
 	private String writer;
 	private Date regDate;
 	private int viewCnt;
+	private String userId;
 	private List<MultipartFile> meetingFile;
 	private String fileNamesUUID;
 	private String meetingFileNames;
@@ -79,6 +80,13 @@ public class MeetingBoardVO {
 	}
 	public void setFileNamesUUID(String fileNamesUUID) {
 		this.fileNamesUUID = fileNamesUUID;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	@Override
 	public String toString() {

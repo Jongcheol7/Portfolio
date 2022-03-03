@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +24,23 @@
             <div class="info">
                 <a href="/"><img src="/images/logo.jpg" alt=""></a> 
                 <i class="fa-solid fa-user-hair-mullet"></i>
-                <p>사용자이름</p>
-                <button id="login">로그인</button>
-                <button id="join">회원가입</button>
+                <p id="nickNameSpace">${sessionScope.login.nickName } 님</p>
+                <c:if test="${sessionScope.login == null }">
+	                <button id="login">로그인</button>
+	                <button id="join">회원가입</button>
+                </c:if>
+                <c:if test="${sessionScope.login != null }">
+                	<button id="logout">로그아웃</button>
+                	<button id="mypage">마이페이지</button>
+                </c:if>
             </div>
+            
+            <script>
+            	$("#logout").click(function() {
+					location.href="/logout";
+				});
+            </script>
+            
             <ul>
                 <li><a href="#">공지사항</a></li>
                 <li><a href="/board/freeBoard">자유게시판</a></li>

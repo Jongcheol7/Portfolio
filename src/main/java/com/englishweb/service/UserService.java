@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.englishweb.vo.UserVO;
@@ -54,12 +55,24 @@ public class UserService {
 	
 	// 회원 가입 기능
 	public void register(UserVO user) {
+		// 회원 비밀번호를 암호화 인코딩
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		System.out.println("암호화 하기 전 :" + user.getUserPw());
+		// 비밀번호 암호화 해서 user 객체에 다시 저장
+		String securePw = encoder.encode(user.getUserPw());
+		System.out.println("암호화 후 : " + securePw);
+		user.setUserPw(securePw);
 		sqlSessionTemplate.insert("userMapper.register", user);
 	}
 	
 	// 회원 정보 조회 기능
 	public UserVO selectOne(String userId) {
 		return sqlSessionTemplate.selectOne("userMapper.selectOne", userId);
+	}
+	
+	// 회원 비밀번호 수정
+	public void modifyPw(UserVO user) {
+		sqlSessionTemplate.update("userMapper.changePw", user);
 	}
 	
 	// 회훤 탈퇴 기능

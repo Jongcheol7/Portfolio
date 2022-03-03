@@ -53,6 +53,21 @@
       color: black;
       font-weight: bold;
   }
+  nav #nickNameSpace{
+  	margin-bottom: 10px;
+  }
+  nav .info button{
+  	padding : 3px 7px;
+  	font-size : 14px;
+  	border : none;
+  	font-weight: bold;
+  	background-color: #f2f2f2;
+  }
+  nav .info button:hover{
+	background-color: gray;
+	color : #f2f2f2;
+	transition:0.2s;
+  }
   section .today{
       display: flex;
       justify-content: space-evenly;

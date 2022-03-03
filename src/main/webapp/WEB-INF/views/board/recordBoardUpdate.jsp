@@ -11,7 +11,7 @@
             		</tr>
             		<tr>
             			<td><label for="writer">작성자</label></td>
-            			<td><input type="text" id="writer" name="writer" value="${vo.writer }" style="width: 100%"></td>
+            			<td><input type="text" id="writer" name="writer" value="${vo.writer }" readonly="readonly" style="width: 100%"></td>
             		</tr>
             		<tr>
             			<td>녹음파일</td>

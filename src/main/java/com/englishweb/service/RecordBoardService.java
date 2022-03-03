@@ -32,6 +32,7 @@ public class RecordBoardService {
 	// 자유게시판 상세보기
 	public RecordBoardVO getRecordBoardOne(int boardNo) {
 		RecordBoardVO vo = sqlSessionTemplate.selectOne("recordBoard.getContentOne", boardNo);
+		sqlSessionTemplate.update("recordBoard.hitUp", boardNo);
 		return vo;
 	}
 	

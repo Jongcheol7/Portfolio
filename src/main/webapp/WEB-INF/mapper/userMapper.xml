@@ -38,4 +38,10 @@
 		where userId = #{userId}
 	</select>
 	
+	<!-- 회원 비밀번호 변경 -->
+	<update id="changePw">
+		update user set userPw = #{userPw} 
+		where userId = #{userId}
+	</update>
+	
 </mapper>

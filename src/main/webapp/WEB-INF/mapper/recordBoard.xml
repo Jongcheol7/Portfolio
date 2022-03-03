@@ -6,7 +6,7 @@
   <mapper namespace="recordBoard">
 
 	<insert id="insert" parameterType="com.englishweb.vo.RecordBoardVO">
-		insert into recordboard(writer,title,content,recordFileName) values(#{writer},#{title},#{content},#{recordFileName})
+		insert into recordboard(writer,title,content,recordFileName,userId) values(#{writer},#{title},#{content},#{recordFileName},#{userId})
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.RecordBoardVO">
@@ -33,6 +33,10 @@
 		delete from recordboard 
 		where boardNo = #{boardNo}
 	</delete>
+	
+	<update id="hitUp">
+		update recordboard set viewCnt = viewCnt+1
+	</update>
 
 
 </mapper>

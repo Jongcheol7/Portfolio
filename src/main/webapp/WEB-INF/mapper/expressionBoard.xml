@@ -6,7 +6,7 @@
   <mapper namespace="expressionBoard">
 
 	<insert id="insert" parameterType="com.englishweb.vo.ExpressionBoardVO">
-		insert into expressionboard(writer,expression,content) values(#{writer},#{expression},#{content})
+		insert into expressionboard(writer,expression,content,userId) values(#{writer},#{expression},#{content},#{userId})
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.ExpressionBoardVO">
@@ -33,5 +33,9 @@
 		delete from expressionboard 
 		where boardNo = #{boardNo}
 	</delete>
+	
+	<update id="hitUp">
+		update expressionboard set viewCnt = viewCnt+1
+	</update>
 
 </mapper>

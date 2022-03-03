@@ -28,6 +28,7 @@ public class WordBoardService {
 	// 자유게시판 상세보기
 	public WordBoardVO getWordBoardOne(int boardNo) {
 		WordBoardVO vo = sqlSessionTemplate.selectOne("wordBoard.getContentOne", boardNo);
+		sqlSessionTemplate.update("wordBoard.hitUp", boardNo);
 		return vo;
 	}
 	

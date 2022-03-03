@@ -30,6 +30,7 @@ public class FreeBoardService {
 	// 자유게시판 상세보기
 	public FreeBoardVO getFreeBoardOne(int boardNo) {
 		FreeBoardVO vo = sqlSessionTemplate.selectOne("freeBoard.getContentOne", boardNo);
+		sqlSessionTemplate.update("freeBoard.hitUp", boardNo);
 		return vo;
 	}
 	

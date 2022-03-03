@@ -11,7 +11,7 @@
             		</tr>
             		<tr>
             			<td><label for="writer">작성자</label></td>
-            			<td><input type="text" id="writer" value="${vo.writer }" name="writer" style="width: 100%"></td>
+            			<td><input type="text" id="writer" value="${vo.writer }" name="writer" readonly="readonly" style="width: 100%"></td>
             		</tr>
             		<tr>
             			<td><label for="content">내용</label></td>

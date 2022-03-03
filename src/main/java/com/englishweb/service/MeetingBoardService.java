@@ -32,6 +32,7 @@ public class MeetingBoardService {
 	// 자유게시판 상세보기
 	public MeetingBoardVO getMeetingBoardOne(int boardNo) {
 		MeetingBoardVO vo = sqlSessionTemplate.selectOne("meetingBoard.getContentOne", boardNo);
+		sqlSessionTemplate.update("meetingBoard.hitUp", boardNo);
 		return vo;
 	}
 	

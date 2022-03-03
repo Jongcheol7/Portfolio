@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/header.jsp"/>
         <section>
             <h1>영단어</h1>
@@ -17,15 +18,16 @@
             			<td><label for="content">내용</label></td>
             			<td contenteditable="false" id="content" name="content" style="height: 100px;">
 		                    ${vo.content }
-		                 
 		                </td>
             		</tr>
             	</table>
             	<div class="buttons">
-					<button id="modify">수정</button>
+				<c:if test="${sessionScope.login.userId == vo.userId }">
+					<button type="submit" id="modify">수정</button>
 					<button id="delete">삭제</button>
-					<button id="list">목록</button>
-				</div>
+				</c:if>
+				<button id="list">목록</button>
+			</div>
             </form>
         </section>
 

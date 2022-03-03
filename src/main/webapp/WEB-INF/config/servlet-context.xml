@@ -36,5 +36,32 @@
 		<beans:property name="maxUploadSizePerFile" value="52428800"/>
 		<beans:property name="maxInMemorySize" value="0"/> <!-- 메모리에 적재하지 않고 바로 하드에 저장 -->
 	</beans:bean>
+	
+	<!-- 인터셉터 빈 등록 -->
+	<beans:bean id="boardInterceptor" class="com.englishweb.commons.BoardInterceptor"/>
+	<!-- 인터셉터가 동작할 uri 결로를 직접 지정 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/board/expressionBoardWrite"/>
+			<mapping path="/board/expressionBoardModify"/>
+			<mapping path="/board/expressionBoardDelete"/>
+			<mapping path="/board/freeBoardWrite"/>
+			<mapping path="/board/freeBoardModify"/>
+			<mapping path="/board/freeBoardDelete"/>
+			<mapping path="/board/idiomBoardWrite"/>
+			<mapping path="/board/idiomBoardModify"/>
+			<mapping path="/board/idiomBoardDelete"/>
+			<mapping path="/board/meetingBoardWrite"/>
+			<mapping path="/board/meetingBoardModify"/>
+			<mapping path="/board/meetingBoardDelete"/>
+			<mapping path="/board/recordBoardWrite"/>
+			<mapping path="/board/recordBoardModify"/>
+			<mapping path="/board/recordBoardDelete"/>
+			<mapping path="/board/wordBoardWrite"/>
+			<mapping path="/board/wordBoardModify"/>
+			<mapping path="/board/wordBoardDelete"/>
+			<beans:ref bean="boardInterceptor"/>
+		</interceptor>
+	</interceptors>
 
 </beans:beans>

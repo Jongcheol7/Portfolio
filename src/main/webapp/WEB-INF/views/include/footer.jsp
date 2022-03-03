@@ -519,14 +519,15 @@
 						console.log("result : " + result);
 						if(result === "idFail"){
 							console.log("아이디가 없습니다");
+							alert("아이디가 존재하지 않습니다");
 						}else if(result === "pwFail"){
 							console.log("비밀번호가 틀렸습니다");
+							alert("비밀번호가 틀렸습니다");
 						}else if(result === "loginSuccess"){
 							console.log("로그인 성공");
-							
 							    document.getElementsByClassName("login-modal")[0].style.display = "none";
 							    document.getElementsByClassName("container")[0].style.opacity = 1;
-							
+								location.reload();
 						}
 					},
 					error : function() {
@@ -536,6 +537,12 @@
 			}else{
 				alert("입력 정보를 다시 확인하세요");
 			}
+		});
+		
+		///////////////////////////
+		// 마이페이지 버튼 클릭
+		$("#mypage").click(function() {
+			location.href="/mypage";
 		});
 		
 		

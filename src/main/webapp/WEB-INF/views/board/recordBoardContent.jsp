@@ -33,10 +33,12 @@
             		</tr>
             	</table>
             	<div class="buttons">
-		            <button type="submit" id="modify">수정</button>
-		            <button id="delete">삭제</button>
-		            <button id="list">목록</button>
-		        </div>
+				<c:if test="${sessionScope.login.userId == vo.userId }">
+					<button type="submit" id="modify">수정</button>
+					<button id="delete">삭제</button>
+				</c:if>
+				<button id="list">목록</button>
+			</div>
             </form>
         </section>
 

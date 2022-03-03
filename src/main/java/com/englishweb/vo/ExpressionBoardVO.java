@@ -10,6 +10,7 @@ public class ExpressionBoardVO {
 	private String content;
 	private Date regDate;
 	private int viewCnt;
+	private String userId;
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -45,6 +46,12 @@ public class ExpressionBoardVO {
 	}
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	

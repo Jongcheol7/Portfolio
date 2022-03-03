@@ -6,7 +6,7 @@
   <mapper namespace="meetingBoard">
 
 	<insert id="insert" parameterType="com.englishweb.vo.MeetingBoardVO">
-		insert into meetingboard(writer,title,content,meetingFileNames, fileNamesUUID) values(#{writer},#{title},#{content},#{meetingFileNames},#{fileNamesUUID})
+		insert into meetingboard(writer,title,content,meetingFileNames, fileNamesUUID,userId) values(#{writer},#{title},#{content},#{meetingFileNames},#{fileNamesUUID},#{userId})
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.MeetingBoardVO">
@@ -33,5 +33,9 @@
 		delete from meetingboard 
 		where boardNo = #{boardNo}
 	</delete>
+	
+	<update id="hitUp">
+		update meetingboard set viewCnt = viewCnt+1
+	</update>
 
 </mapper>

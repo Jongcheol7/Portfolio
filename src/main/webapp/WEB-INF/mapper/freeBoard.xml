@@ -6,7 +6,7 @@
 <mapper namespace="freeBoard">
 
 	<insert id="insert" parameterType="com.englishweb.vo.FreeBoardVO">
-		insert into freeboard(writer,title,content) values(#{writer},#{title},#{content})
+		insert into freeboard(writer,title,content,userId) values(#{writer},#{title},#{content},#{userId})
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.FreeBoardVO">
@@ -39,4 +39,8 @@
 		delete from freeboard 
 		where boardNo = #{boardNo}
 	</delete>
+	
+	<update id="hitUp">
+		update freeboard set viewCnt = viewCnt+1
+	</update>
 </mapper>

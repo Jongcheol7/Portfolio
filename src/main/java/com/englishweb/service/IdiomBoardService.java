@@ -29,6 +29,7 @@ public class IdiomBoardService {
 	// 자유게시판 상세보기
 	public IdiomBoardVO getIdiomBoardOne(int boardNo) {
 		IdiomBoardVO vo = sqlSessionTemplate.selectOne("idiomBoard.getContentOne", boardNo);
+		sqlSessionTemplate.update("idiomBoard.hitUp", boardNo);
 		return vo;
 	}
 	

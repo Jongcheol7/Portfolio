@@ -31,6 +31,7 @@ public class ExpressionBoardService {
 	// 자유게시판 상세보기
 	public ExpressionBoardVO getExpressionBoardOne(int boardNo) {
 		ExpressionBoardVO vo = sqlSessionTemplate.selectOne("expressionBoard.getContentOne", boardNo);
+		sqlSessionTemplate.update("expressionBoard.hitUp", boardNo);
 		return vo;
 	}
 	

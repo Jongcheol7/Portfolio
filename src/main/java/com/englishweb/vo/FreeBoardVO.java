@@ -10,7 +10,17 @@ public class FreeBoardVO {
 	private String title;
 	private Date regDate;
 	private int viewCnt;
+	private String userId;
 	
+	
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}

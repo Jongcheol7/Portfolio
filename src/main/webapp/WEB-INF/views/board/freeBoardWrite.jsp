@@ -3,6 +3,7 @@
         <section>
             <h1>자유게시판 글쓰기</h1>
             <form  method="post" class="contentForm">
+            <input type="hidden" name="userId" value="${sessionScope.login.userId }">
             	<table class="contentTable">
             		<tr>
             			<td><label for="title">제목</label></td>
@@ -10,7 +11,7 @@
             		</tr>
             		<tr>
             			<td><label for="writer">작성자</label></td>
-            			<td><input type="text" id="writer" name="writer" style="width: 100%"></td>
+            			<td><input type="text" id="writer" name="writer" value="${sessionScope.login.nickName }" readonly="readonly" style="width: 100%"></td>
             		</tr>
             		<tr>
             			<td><label for="content">내용</label></td>

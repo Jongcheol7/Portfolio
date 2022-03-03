@@ -6,7 +6,7 @@
   <mapper namespace="wordBoard">
 
 	<insert id="insert" parameterType="com.englishweb.vo.WordBoardVO">
-		insert into wordboard(writer,word,content) values(#{writer},#{word},#{content})
+		insert into wordboard(writer,word,content,userId) values(#{writer},#{word},#{content},#{userId})
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.WordBoardVO">
@@ -34,4 +34,7 @@
 		where boardNo = #{boardNo}
 	</delete>
 
+	<update id="hitUp">
+		update wordboard set viewCnt = viewCnt+1
+	</update>
 </mapper>

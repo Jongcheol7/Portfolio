@@ -13,6 +13,7 @@ public class RecordBoardVO {
 	private String writer;
 	private Date regDate;
 	private int viewCnt;
+	private String userId;
 	private MultipartFile recordFile;
 	private String recordFileName;
 	
@@ -69,6 +70,13 @@ public class RecordBoardVO {
 	}
 	public void setRecordFileName(String recordFileName) {
 		this.recordFileName = recordFileName;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	@Override
 	public String toString() {
