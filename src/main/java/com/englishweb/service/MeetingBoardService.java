@@ -31,7 +31,7 @@ public class MeetingBoardService {
 	
 	// 파일 등록
 	public void insertFile(Map<String, Object> map) {
-		sqlSessionTemplate.insert("recordBoard.insertFile", map);
+		sqlSessionTemplate.insert("meetingBoard.insertFile", map);
 	}
 	public void insertFile2(MeetingBoardVO vo, MultipartFile[] file) throws Exception{
 		insertMeetingBoard(vo);
@@ -44,13 +44,21 @@ public class MeetingBoardService {
 	public Map<String, Object> detailFile(int boardNo){
 		MeetingBoardVO vo = getMeetingBoardOne(boardNo);
 		//map.put("boardNo", vo.getBoardNo());
-		List<Map<String, Object>> fileDetail = sqlSessionTemplate.selectList("recordBoard.detailFile", boardNo);
+		List<Map<String, Object>> fileDetail = sqlSessionTemplate.selectList("meetingBoard.detailFile", boardNo);
 		//System.out.println(fileDetail.get(0));
 		Map<String, Object> resultBoard = new HashMap<String, Object>();
 		resultBoard.put("content", vo);
 		resultBoard.put("file", fileDetail);
 		
 		return resultBoard;
+	}
+	
+	
+	// 모든 파일 저장된 이름 불러오기
+	public List<Map<String, Object>> getAllFileName(){
+		List<Map<String, Object>> getAllFile = sqlSessionTemplate.selectList("meetingBoard.getAllFileName");
+		//System.out.println(getAllFile.toString());
+		return getAllFile;
 	}
 	
 	// 자유게시판 목록 불러오기

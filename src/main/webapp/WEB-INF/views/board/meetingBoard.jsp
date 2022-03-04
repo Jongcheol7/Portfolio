@@ -37,7 +37,7 @@
                 		</c:forEach>
                 		
                 		<c:if test="${pc.next }">
-                		<li><a href="/board/meetingBoard?page=${pc.paging.page+11 }&countPerPage=${pc.paging.countPerPage}">다음</a>
+                		<li><a href="/board/meetingBoard?page=${pc.paging.page+1 }&countPerPage=${pc.paging.countPerPage}">다음</a>
                 		</c:if>
                 	</ul>
                 </div>

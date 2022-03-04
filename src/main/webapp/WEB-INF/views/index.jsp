@@ -68,13 +68,13 @@
                 </div>
             </div>
             <div class="photo">
-                <p>포토존</p>
+                <p>영어모임 포토존</p>
                 <div class="album">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div><img src="/showImg?field=1"></div>
+                    <div><img src="/showImg?field=2"></div>
+                    <div><img src="/showImg?field=3"></div>
+                    <div><img src="/showImg?field=4"></div>
+                    <div><img src="/showImg?field=5"></div>
                 </div>       
             </div>
         </section>

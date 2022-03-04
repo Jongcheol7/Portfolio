@@ -24,7 +24,7 @@
             <div class="info">
                 <a href="/"><img src="/images/logo.jpg" alt=""></a> 
                 <i class="fa-solid fa-user-hair-mullet"></i>
-                <p id="nickNameSpace">${sessionScope.login.nickName } 님</p>
+                <p id="nickname">${sessionScope.login.nickName } 님</p>
                 <c:if test="${sessionScope.login == null }">
 	                <button id="login">로그인</button>
 	                <button id="join">회원가입</button>

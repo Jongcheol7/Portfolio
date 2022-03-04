@@ -35,17 +35,28 @@
 		where boardNo = #{boardNo} and delChk = 'N'
 	</select>
 	
+	 <!-- 파일 모든 저장된 이름 불러오기  -->
+	<select id="getAllFileName" parameterType="int" resultType="hashmap">
+		select saveFileName 
+		from filetable f join meetingboard m 
+		on f.boardNo = m.boardNo
+		where saveFileName like '%.jpg' or saveFileName like '%.png'
+		limit 5
+	</select>
+	
 	<select id="getAllList" resultType="com.englishweb.vo.MeetingBoardVO">
 		SELECT * FROM meetingboard 
 		<include refid="search"/>		
 		ORDER BY boardNo DESC 
 		limit #{startArticle}, 10
 	</select>
-	<!-- 목록 전체 수 조회 -->
+	<!-- 목록 전체 수 조회 (검색처리포함)-->
 	<select id="countArticles" resultType="int">
 		select count(*) from meetingboard
 		<include refid="search"/>
 	</select>
+	
+
 		
 	<select id="getContentOne" resultType="com.englishweb.vo.MeetingBoardVO" parameterType="int">
 		select * from meetingboard 

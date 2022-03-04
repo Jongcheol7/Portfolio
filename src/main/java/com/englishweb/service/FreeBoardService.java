@@ -21,7 +21,18 @@ public class FreeBoardService {
 	// 자유게시판 글 등록
 	public void insertFreeBoard(FreeBoardVO vo) {
 		sqlSessionTemplate.insert("freeBoard.insert", vo);
+		/* 테스트용
+		for(int i=1; i<=320; i++) {
+			FreeBoardVO a = new FreeBoardVO();
+			a.setUserId("테스트 id " + i);
+			a.setWriter("테스트");
+			a.setTitle("테스트 제목 " +i);
+			a.setContent("테스트 내용");
+			sqlSessionTemplate.insert("freeBoard.insert", a);
+		}
+		*/
 	}
+	
 	
 	// 자유게시판 목록 불러오기
 	public List<FreeBoardVO> getFreeBoardList(SearchVO page){
