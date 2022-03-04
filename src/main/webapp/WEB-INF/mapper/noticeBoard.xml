@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="freeBoard">
+<mapper namespace="noticeBoard">
 
 	<!-- 동적 sql 처리 -->
 	<sql id="search">
@@ -18,12 +18,12 @@
 		</if>
 	</sql>
 
-	<insert id="insert" parameterType="com.englishweb.vo.FreeBoardVO">
-		insert into freeboard(writer,title,content,userId) values(#{writer},#{title},#{content},#{userId})
+	<insert id="insert" parameterType="com.englishweb.vo.NoticeBoardVO">
+		insert into noticeboard(writer,title,content,userId) values(#{writer},#{title},#{content},#{userId})
 	</insert>
 	
-	<select id="getAllList" resultType="com.englishweb.vo.FreeBoardVO">
-		SELECT * FROM freeboard 
+	<select id="getAllList" resultType="com.englishweb.vo.NoticeBoardVO">
+		SELECT * FROM noticeboard 
 		<include refid="search"/>		
 		ORDER BY boardNo DESC 
 		limit #{startArticle}, 10
@@ -31,38 +31,38 @@
 	
 	<!-- 목록 전체 수 조회 -->
 	<select id="countArticles" resultType="int">
-		select count(*) from freeboard
+		select count(*) from noticeboard
 		<include refid="search"/>
 	</select>
 	
-	<select id="getContentOne" resultType="com.englishweb.vo.FreeBoardVO" parameterType="int">
-		select * from freeboard 
+	<select id="getContentOne" resultType="com.englishweb.vo.NoticeBoardVO" parameterType="int">
+		select * from noticeboard 
 		where boardNo = #{boardNo}
 	</select>
 	
 	<select id="todayFreeBoard" resultType="int">
-		select count(*) from freeboard 
+		select count(*) from noticeboard 
 		where regDate = CURDATE()
 	</select>
 	
-	<select id="getList12" resultType="com.englishweb.vo.FreeBoardVO">
-		select * from freeboard 
+	<select id="getList12" resultType="com.englishweb.vo.NoticeBoardVO">
+		select * from noticeboard 
 		order by boardNo desc 
 		limit 12;
 	</select>
 
 	<update id="update">
-		update freeboard set title=#{title}, content=#{content} 
+		update noticeboard set title=#{title}, content=#{content} 
 		where boardNo = #{boardNo}
 	</update>
 	
 	<delete id="delete">
-		delete from freeboard 
+		delete from noticeboard 
 		where boardNo = #{boardNo}
 	</delete>
 	
 	<update id="hitUp">
-		update freeboard set viewCnt = viewCnt+1 
+		update noticeboard set viewCnt = viewCnt+1 
 		where boardNo = #{boardNo}
 	</update>
 </mapper>

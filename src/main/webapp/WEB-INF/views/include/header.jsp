@@ -42,7 +42,7 @@
             </script>
             
             <ul>
-                <li><a href="#">공지사항</a></li>
+                <li><a href="/board/noticeBoard">공지사항</a></li>
                 <li><a href="/board/freeBoard">자유게시판</a></li>
                 <li><a href="/board/wordBoard">영단어</a></li>
                 <li><a href="/board/expressionBoard">영어표현</a></li>

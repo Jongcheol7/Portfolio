@@ -18,9 +18,22 @@
 		</if>
 	</sql>
 
-	<insert id="insert" parameterType="com.englishweb.vo.MeetingBoardVO">
-		insert into meetingboard(writer,title,content,meetingFileNames, fileNamesUUID,userId) values(#{writer},#{title},#{content},#{meetingFileNames},#{fileNamesUUID},#{userId})
+	<insert id="insert" parameterType="com.englishweb.vo.MeetingBoardVO" useGeneratedKeys="true" keyProperty="boardNo">
+		insert into meetingboard(writer,title,content,userId) values(#{writer},#{title},#{content},#{userId})
 	</insert>
+	
+	<!-- 파일등록 -->
+	<insert id="insertFile" parameterType="hashmap">
+		insert into filetable(boardNo,orgFileName,saveFileName,fileSize,creaID,creaDate,updateDate) 
+		values(#{boardNo},#{orgFileName},#{saveFileName},#{fileSize},#{creaID},NOW(),NOW())
+	</insert>
+	
+	<!-- 파일 세부 정보 보여주기 -->
+	<select id="detailFile" parameterType="int" resultType="hashmap">
+		select no,boardNo, orgFileName, round(fileSize/1024,1) as fileSize, saveFileName 
+		from filetable 
+		where boardNo = #{boardNo} and delChk = 'N'
+	</select>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.MeetingBoardVO">
 		SELECT * FROM meetingboard 

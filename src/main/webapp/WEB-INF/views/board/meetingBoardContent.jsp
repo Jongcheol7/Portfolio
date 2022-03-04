@@ -17,21 +17,19 @@
             			<td>${vo.writer }</td>
             		</tr>
             		
-            		<c:if test="${vo.meetingFileNames ne null }">
-            			<c:forEach var="eachName" items="${eachNameU }">
             		<tr>
             			
             			<td id="downloadList">파일 다운로드</td>
             			
-	            			<td>
-	            				<a href="/board/fileDownload?fileNameUUID=${eachName }">${eachName}</a>
-	            			</td>
+	            		<td>
+            				<c:forEach var="file" items="${file}">
+            				<a href="/board/filedownload?saveFileNameFromView=${file.saveFileName}">파일이름 : ${file.orgFileName }</a><span> / Size : ${file.fileSize }</span><br>
+            				</c:forEach>
+            			</td>
             			
             		</tr>
-            		</c:forEach>
-            			</c:if>
-            		
-            		
+
+
             		<tr>
             			<td><label for="content">내용</label></td>
             			<td contenteditable="false" id="content" name="content" style="height: 100px;">

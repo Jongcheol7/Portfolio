@@ -33,12 +33,14 @@
                                 <td>Title</td>
                                 <td>Date</td>
                             </tr>
-                            <tr class="noticeBoardHomeHover">
-                                <td>1</td>
-                                <td class="title">첫공지</td>
-                                <td>2022.02.24</td>
+                            <c:forEach var="noticeBoardHome" items="${noticeBoardHome }">
+                            <tr class="freeBoardHomeHover">
+                                <td>${noticeBoardHome.boardNo }</td>
+                                <td class="title"><a href="/board/noticeBoardContent?boardNo=${noticeBoardHome.boardNo }">${noticeBoardHome.title }</a></td>
+                                <td><fmt:formatDate value="${noticeBoardHome.regDate }" pattern="yyyy.MM.dd"/></td>
                              
                             </tr>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>

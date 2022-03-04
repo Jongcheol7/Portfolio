@@ -45,9 +45,9 @@ public class FreeBoardService {
 		return sqlSessionTemplate.selectOne("freeBoard.todayFreeBoard");
 	}
 	
-	// 메인화면에 자유게시판 10개만 보여주기
-	public List<FreeBoardVO> getFreeBoardList10(){
-		List<FreeBoardVO> list = sqlSessionTemplate.selectList("freeBoard.getList10");
+	// 메인화면에 자유게시판 12개만 보여주기
+	public List<FreeBoardVO> getFreeBoardList12(){
+		List<FreeBoardVO> list = sqlSessionTemplate.selectList("freeBoard.getList12");
 		return list;
 	}
 	

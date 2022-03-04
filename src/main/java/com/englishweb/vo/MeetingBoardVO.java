@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MeetingBoardVO {
 	
 	private String id;
-	private Long boardNo;
+	private int boardNo;
 	private String title;
 	private String content;
 	private String writer;
@@ -27,10 +27,10 @@ public class MeetingBoardVO {
 		this.id = id;
 	}
 	
-	public Long getBoardNo() {
+	public int getBoardNo() {
 		return boardNo;
 	}
-	public void setBoardNo(Long boardNo) {
+	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
 	public String getTitle() {

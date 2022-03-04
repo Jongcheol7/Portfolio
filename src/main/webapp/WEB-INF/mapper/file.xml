@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="file">
+  
+  <!-- 파일 세부 정보 보여주기 -->
+	<select id="selectFileInfo" parameterType="java.lang.String" resultType="hashmap">
+		select no,boardNo, orgFileName, saveFileName 
+		from filetable 
+		where saveFileName = #{saveFileName} and  delChk = 'N'
+	</select>
+
+
+</mapper>

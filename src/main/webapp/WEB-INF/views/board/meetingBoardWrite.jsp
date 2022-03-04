@@ -15,7 +15,14 @@
             		</tr>
             		<tr>
             			<td>첨부파일</td>
-            			<td><input type="file" name="uploadFile" multiple="multiple"></td>
+            			<td>
+            				<div id="file-list">
+            					<a href="#this" onclick="addFile()">파일추가</a>
+            					<div>
+            						<input type="file" name="file"><a href="#this" name="fileDelete">삭제</a>
+            					</div>
+            				</div>
+            			</td>
             		</tr>
             		<tr>
             			<td><label for="content">내용</label></td>
@@ -37,7 +44,28 @@
     document.getElementById("list").addEventListener("click",function(e){
     	e.preventDefault();
         location.href = "/board/meetingBoard";
-
+    });
+    
+    $(function() {
+		$("a[name='fileDelete']").click(function(e) {
+			e.preventDefault();
+			deleteFile($(this));
+		});
+		
+	});
+    
+    function deleteFile(obj){
+		obj.parent().remove();
+	}
+	function addFile(){
+		var str = "<div><input type='file' name='file'><a href='#this' name='fileDelete'>삭제</a></div>";
+		console.log(str);
+		$("#file-list").append(str);
+		$("a[name='fileDelete']").click(function(e) {
+			e.preventDefault();
+			deleteFile($(this));
+		});
+	}
 </script>
 
 <jsp:include page="../include/footer.jsp"/>

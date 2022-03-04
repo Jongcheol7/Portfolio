@@ -16,6 +16,7 @@
 	<!-- 스캔할 bean 들이 모여있는 패키지를 지정한다. -->
 	<context:component-scan base-package="com.englishweb.controller"/>
 	<context:component-scan base-package="com.englishweb.service"/>
+	<context:component-scan base-package="com.englishweb.commons"/>
 	
 	<!-- Controller의 메서드에서 반환하는 문자열 앞 뒤에 붙일 경로 정보를 세팅 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -35,6 +36,10 @@
 		<beans:property name="maxUploadSize" value="52428800"/>
 		<beans:property name="maxUploadSizePerFile" value="52428800"/>
 		<beans:property name="maxInMemorySize" value="0"/> <!-- 메모리에 적재하지 않고 바로 하드에 저장 -->
+	</beans:bean>
+	<!-- 파일 업로드 디렉터리 설정 -->
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\\upload\\"/>
 	</beans:bean>
 	
 	<!-- 인터셉터 빈 등록 -->
@@ -60,6 +65,9 @@
 			<mapping path="/board/wordBoardWrite"/>
 			<mapping path="/board/wordBoardModify"/>
 			<mapping path="/board/wordBoardDelete"/>
+			<mapping path="/board/noticeBoardWrite"/>
+			<mapping path="/board/noticeBoardModify"/>
+			<mapping path="/board/noticeBoardDelete"/>
 			<beans:ref bean="boardInterceptor"/>
 		</interceptor>
 	</interceptors>

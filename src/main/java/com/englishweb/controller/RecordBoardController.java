@@ -3,6 +3,7 @@ package com.englishweb.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,7 @@ public class RecordBoardController {
 	public void getRecordBoardWritePage() {
 	}
 	
+	/*
 	// 영어녹음게시판 글 등록
 	@PostMapping("/recordBoardWrite")
 	public String registerRecordBoard(RecordBoardVO vo) throws IllegalStateException, IOException {
@@ -69,14 +71,20 @@ public class RecordBoardController {
 		service.insertRecordBoard(vo);
 		return "redirect:/board/recordBoard";
 	}
+	*/
 
 	// 영어녹음게시판 글 상세내용 확인
 	@GetMapping("/recordBoardContent")
 	public String getRecordBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) {
-		RecordBoardVO vo = service.getRecordBoardOne(boardNo);
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getRecordFileName());
-		model.addAttribute("vo", vo);
+//		RecordBoardVO vo = service.getRecordBoardOne(boardNo);
+//		System.out.println(vo.getTitle());
+//		System.out.println(vo.getRecordFileName());
+//		model.addAttribute("vo", vo);
+//		return "board/recordBoardContent";
+		
+		Map<String, Object> resultBoard = service.detailFile(boardNo);
+		model.addAttribute("vo", resultBoard.get("content"));
+		model.addAttribute("file", resultBoard.get("file"));
 		return "board/recordBoardContent";
 	}
 	
