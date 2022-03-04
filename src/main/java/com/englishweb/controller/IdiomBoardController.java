@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.englishweb.commons.PageCreator;
+import com.englishweb.commons.SearchVO;
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.service.IdiomBoardService;
 import com.englishweb.service.WordBoardService;
@@ -26,9 +28,14 @@ public class IdiomBoardController {
 	
 	// 자유게시판 목록 불러오기
 	@GetMapping("/idiomBoard")
-	public void getIdiomBoardPage(Model model) {
-		List<IdiomBoardVO> list = service.getIdiomBoardList();
+	public void getIdiomBoardPage(Model model, SearchVO paging) {
+		PageCreator pc = new PageCreator();
+		pc.setPaging(paging);
+		pc.setArticleTotalCount(service.countArticles(paging));
+		paging.setStartArticle(paging.getPage());
+		List<IdiomBoardVO> list = service.getIdiomBoardList(paging);
 		model.addAttribute("list", list);
+		model.addAttribute("pc", pc);
 	}
 	
 	// 자유게시판 글쓰기 페이지 요청

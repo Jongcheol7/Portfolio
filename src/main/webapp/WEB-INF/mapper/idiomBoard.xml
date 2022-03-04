@@ -5,15 +5,35 @@
   
   <mapper namespace="idiomBoard">
 
+	<!-- 동적 sql 처리 -->
+	<sql id="search">
+		<if test="condition == 'idiom'">
+			WHERE idiom LIKE CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="condition == 'writer'">
+			WHERE writer LIKE CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="condition == 'content'">
+			WHERE content LIKE CONCAT('%',#{keyword},'%')
+		</if>
+	</sql>
+
 	<insert id="insert" parameterType="com.englishweb.vo.IdiomBoardVO">
 		insert into idiomboard(writer,idiom,content,userId) values(#{writer},#{idiom},#{content},#{userId})
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.IdiomBoardVO">
-		select * from idiomboard 
-		order by boardNo desc
+		SELECT * FROM idiomboard 
+		<include refid="search"/>		
+		ORDER BY boardNo DESC 
+		limit #{startArticle}, 10
 	</select>
-	
+	<!-- 목록 전체 수 조회 -->
+	<select id="countArticles" resultType="int">
+		select count(*) from idiomboard
+		<include refid="search"/>
+	</select>
+		
 	<select id="getContentOne" resultType="com.englishweb.vo.IdiomBoardVO" parameterType="int">
 		select * from idiomboard 
 		where boardNo = #{boardNo}
@@ -35,7 +55,8 @@
 	</delete>
 	
 	<update id="hitUp">
-		update idiomboard set viewCnt = viewCnt+1
+		update idiomboard set viewCnt = viewCnt+1 
+		where boardNo = #{boardNo}
 	</update>
 
 </mapper>

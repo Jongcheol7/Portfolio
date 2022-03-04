@@ -36,7 +36,8 @@ section h1{
 }
 .buttons{
     display: flex;
-    justify-content: flex-end;
+    position : relative;
+    justify-content: center;
 }
 #modify, #list, #delete, #register{
     padding: 4px 10px;

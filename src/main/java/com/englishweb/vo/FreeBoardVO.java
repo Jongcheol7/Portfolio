@@ -57,6 +57,11 @@ public class FreeBoardVO {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
+	@Override
+	public String toString() {
+		return "FreeBoardVO [boardNo=" + boardNo + ", writer=" + writer + ", content=" + content + ", title=" + title
+				+ ", regDate=" + regDate + ", viewCnt=" + viewCnt + ", userId=" + userId + "]";
+	}
 	
 	
 }

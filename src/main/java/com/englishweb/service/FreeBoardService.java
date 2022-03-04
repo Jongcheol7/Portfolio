@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.englishweb.commons.PageVO;
+import com.englishweb.commons.SearchVO;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.MeetingBoardVO;
 
@@ -22,9 +24,13 @@ public class FreeBoardService {
 	}
 	
 	// 자유게시판 목록 불러오기
-	public List<FreeBoardVO> getFreeBoardList(){
-		List<FreeBoardVO> list = sqlSessionTemplate.selectList("freeBoard.getAllList");
+	public List<FreeBoardVO> getFreeBoardList(SearchVO page){
+		List<FreeBoardVO> list = sqlSessionTemplate.selectList("freeBoard.getAllList", page);
 		return list;
+	}
+	// 게시글 전체 수 조회
+	public int countArticles(SearchVO vo) {
+		return sqlSessionTemplate.selectOne("freeBoard.countArticles", vo);
 	}
 	
 	// 자유게시판 상세보기
@@ -55,4 +61,5 @@ public class FreeBoardService {
 	public void delete(int boardNo) {
 		sqlSessionTemplate.delete("freeBoard.delete", boardNo);
 	}
+	
 }

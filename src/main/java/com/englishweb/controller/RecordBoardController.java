@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.englishweb.commons.PageCreator;
+import com.englishweb.commons.SearchVO;
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.service.RecordBoardService;
 import com.englishweb.vo.FreeBoardVO;
@@ -32,9 +34,14 @@ public class RecordBoardController {
 	
 	// 영어녹음게시판 목록 불러오기
 	@GetMapping("/recordBoard")
-	public void getRecordBoardPage(Model model) {
-		List<RecordBoardVO> list = service.getRecordBoardList();
+	public void getRecordBoardPage(Model model, SearchVO paging) {
+		PageCreator pc = new PageCreator();
+		pc.setPaging(paging);
+		pc.setArticleTotalCount(service.countArticles(paging));
+		paging.setStartArticle(paging.getPage());
+		List<RecordBoardVO> list = service.getRecordBoardList(paging);
 		model.addAttribute("list", list);
+		model.addAttribute("pc", pc);
 	}
 	
 	// 영어녹음게시판 글쓰기 페이지 요청
@@ -55,10 +62,10 @@ public class RecordBoardController {
 			// UUID 구하기
 			UUID uuid = UUID.randomUUID();
 			fileName = uuid + "." + ext;
-			recordFile.transferTo(new File("C:\\EnglishRecord\\"+ fileName));
+			recordFile.transferTo(new File("C:\\upload\\"+ fileName));
 		}
 		System.out.println(vo);
-	
+		vo.setRecordFileName(fileName);
 		service.insertRecordBoard(vo);
 		return "redirect:/board/recordBoard";
 	}

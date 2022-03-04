@@ -1,6 +1,35 @@
 section{
     position: relative;
 }
+.paging > ul{
+	list-style: none;
+	display: flex;
+	justify-content: center;
+}
+.paging > ul li{
+	padding: 10px;
+	font-size: 20px;
+}
+.page-active{
+	color: orange;
+	font-weight: bold;
+	font-size: 22px;
+}
+.searchInfo{
+	display: flex;
+	margin-top: 10px;
+}
+.searchInfo div{
+	padding: 0 5px;
+}
+#condition{
+	height: 20px;
+} 
+#writeBoard{
+	position: absolute;
+	right: 20px;
+}
+
 section h1{
     color: orange;
     text-shadow: 1px 1px 2px black;
@@ -71,7 +100,9 @@ section .freeboardFrame{
     text-align: left;
     padding-left: 20px;
 }
-
+.freeboardFrame .paging{
+	text-align: center;
+}
 #writeBoard{
     width: 70px;
     padding: 4px 10px;

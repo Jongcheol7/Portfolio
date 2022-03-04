@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.englishweb.commons.PageCreator;
+import com.englishweb.commons.PageVO;
+import com.englishweb.commons.SearchVO;
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.MeetingBoardVO;
@@ -23,9 +26,18 @@ public class FreeBoardController {
 	
 	// 자유게시판 목록 불러오기
 	@GetMapping("/freeBoard")
-	public void getFreeBoardPage(Model model) {
-		List<FreeBoardVO> list = service.getFreeBoardList();
+	public void getFreeBoardPage(Model model, SearchVO paging) {
+		PageCreator pc = new PageCreator();
+		pc.setPaging(paging);
+		pc.setArticleTotalCount(service.countArticles(paging));
+		paging.setStartArticle(paging.getPage());
+		List<FreeBoardVO> list = service.getFreeBoardList(paging);
+		
+		System.out.println(pc.getPaging());
+		System.out.println(pc);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pc", pc);
 	}
 	
 	// 자유게시판 글쓰기 페이지 요청

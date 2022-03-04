@@ -5,13 +5,34 @@
   
 <mapper namespace="freeBoard">
 
+	<!-- 동적 sql 처리 -->
+	<sql id="search">
+		<if test="condition == 'title'">
+			WHERE title LIKE CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="condition == 'writer'">
+			WHERE writer LIKE CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="condition == 'content'">
+			WHERE content LIKE CONCAT('%',#{keyword},'%')
+		</if>
+	</sql>
+
 	<insert id="insert" parameterType="com.englishweb.vo.FreeBoardVO">
 		insert into freeboard(writer,title,content,userId) values(#{writer},#{title},#{content},#{userId})
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.FreeBoardVO">
-		select * from freeboard 
-		order by boardNo desc
+		SELECT * FROM freeboard 
+		<include refid="search"/>		
+		ORDER BY boardNo DESC 
+		limit #{startArticle}, 10
+	</select>
+	
+	<!-- 목록 전체 수 조회 -->
+	<select id="countArticles" resultType="int">
+		select count(*) from freeboard
+		<include refid="search"/>
 	</select>
 	
 	<select id="getContentOne" resultType="com.englishweb.vo.FreeBoardVO" parameterType="int">
@@ -21,7 +42,7 @@
 	
 	<select id="todayFreeBoard" resultType="int">
 		select count(*) from freeboard 
-		where regDate = CURDATE();
+		where regDate = CURDATE()
 	</select>
 	
 	<select id="getList10" resultType="com.englishweb.vo.FreeBoardVO">
@@ -41,6 +62,7 @@
 	</delete>
 	
 	<update id="hitUp">
-		update freeboard set viewCnt = viewCnt+1
+		update freeboard set viewCnt = viewCnt+1 
+		where boardNo = #{boardNo}
 	</update>
 </mapper>

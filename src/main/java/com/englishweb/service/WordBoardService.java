@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.englishweb.commons.SearchVO;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.WordBoardVO;
@@ -20,11 +21,14 @@ public class WordBoardService {
 	}
 	
 	// 자유게시판 목록 불러오기
-	public List<WordBoardVO> getWordBoardList(){
-		List<WordBoardVO> list = sqlSessionTemplate.selectList("wordBoard.getAllList");
+	public List<WordBoardVO> getWordBoardList(SearchVO page){
+		List<WordBoardVO> list = sqlSessionTemplate.selectList("wordBoard.getAllList", page);
 		return list;
 	}
-	
+	// 게시글 전체 수 조회
+	public int countArticles(SearchVO vo) {
+		return sqlSessionTemplate.selectOne("wordBoard.countArticles", vo);
+	}
 	// 자유게시판 상세보기
 	public WordBoardVO getWordBoardOne(int boardNo) {
 		WordBoardVO vo = sqlSessionTemplate.selectOne("wordBoard.getContentOne", boardNo);

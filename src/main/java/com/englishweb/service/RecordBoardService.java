@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.englishweb.commons.SearchVO;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.RecordBoardVO;
@@ -24,11 +25,14 @@ public class RecordBoardService {
 	}
 	
 	// 자유게시판 목록 불러오기
-	public List<RecordBoardVO> getRecordBoardList(){
-		List<RecordBoardVO> list = sqlSessionTemplate.selectList("recordBoard.getAllList");
+	public List<RecordBoardVO> getRecordBoardList(SearchVO page){
+		List<RecordBoardVO> list = sqlSessionTemplate.selectList("recordBoard.getAllList", page);
 		return list;
 	}
-	
+	// 게시글 전체 수 조회
+	public int countArticles(SearchVO vo) {
+		return sqlSessionTemplate.selectOne("recordBoard.countArticles", vo);
+	}
 	// 자유게시판 상세보기
 	public RecordBoardVO getRecordBoardOne(int boardNo) {
 		RecordBoardVO vo = sqlSessionTemplate.selectOne("recordBoard.getContentOne", boardNo);

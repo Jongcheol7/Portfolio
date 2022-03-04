@@ -33,6 +33,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.englishweb.commons.PageCreator;
+import com.englishweb.commons.SearchVO;
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.service.MeetingBoardService;
 import com.englishweb.service.RecordBoardService;
@@ -55,9 +57,14 @@ public class MeetingBoardController {
 	
 	// 목록 불러오기
 	@GetMapping("/meetingBoard")
-	public void getMeetingBoardPage(Model model) {
-		List<MeetingBoardVO> list = service.getMeetingBoardList();
+	public void getMeetingBoardPage(Model model, SearchVO paging) {
+		PageCreator pc = new PageCreator();
+		pc.setPaging(paging);
+		pc.setArticleTotalCount(service.countArticles(paging));
+		paging.setStartArticle(paging.getPage());
+		List<MeetingBoardVO> list = service.getMeetingBoardList(paging);
 		model.addAttribute("list", list);
+		model.addAttribute("pc", pc);
 	}
 	
 	// 영어녹음게시판 글쓰기 페이지 요청

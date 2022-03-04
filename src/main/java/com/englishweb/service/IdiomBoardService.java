@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.englishweb.commons.SearchVO;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.IdiomBoardVO;
 import com.englishweb.vo.MeetingBoardVO;
@@ -21,9 +22,13 @@ public class IdiomBoardService {
 	}
 	
 	// 자유게시판 목록 불러오기
-	public List<IdiomBoardVO> getIdiomBoardList(){
-		List<IdiomBoardVO> list = sqlSessionTemplate.selectList("idiomBoard.getAllList");
+	public List<IdiomBoardVO> getIdiomBoardList(SearchVO page){
+		List<IdiomBoardVO> list = sqlSessionTemplate.selectList("idiomBoard.getAllList", page);
 		return list;
+	}
+	// 게시글 전체 수 조회
+	public int countArticles(SearchVO vo) {
+		return sqlSessionTemplate.selectOne("idiomBoard.countArticles", vo);
 	}
 	
 	// 자유게시판 상세보기

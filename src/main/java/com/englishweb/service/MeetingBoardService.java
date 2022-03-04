@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.englishweb.commons.SearchVO;
 import com.englishweb.vo.FreeBoardVO;
 import com.englishweb.vo.MeetingBoardVO;
 import com.englishweb.vo.RecordBoardVO;
@@ -24,9 +25,13 @@ public class MeetingBoardService {
 	}
 	
 	// 자유게시판 목록 불러오기
-	public List<MeetingBoardVO> getMeetingBoardList(){
-		List<MeetingBoardVO> list = sqlSessionTemplate.selectList("meetingBoard.getAllList");
+	public List<MeetingBoardVO> getMeetingBoardList(SearchVO page){
+		List<MeetingBoardVO> list = sqlSessionTemplate.selectList("meetingBoard.getAllList",page);
 		return list;
+	}
+	// 게시글 전체 수 조회
+	public int countArticles(SearchVO vo) {
+		return sqlSessionTemplate.selectOne("meetingBoard.countArticles", vo);
 	}
 	
 	// 자유게시판 상세보기

@@ -5,14 +5,35 @@
   
   <mapper namespace="wordBoard">
 
+	<!-- 동적 sql 처리 -->
+	<sql id="search">
+		<if test="condition == 'word'">
+			WHERE word LIKE CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="condition == 'writer'">
+			WHERE writer LIKE CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="condition == 'content'">
+			WHERE content LIKE CONCAT('%',#{keyword},'%')
+		</if>
+	</sql>
+
 	<insert id="insert" parameterType="com.englishweb.vo.WordBoardVO">
 		insert into wordboard(writer,word,content,userId) values(#{writer},#{word},#{content},#{userId})
 	</insert>
 	
 	<select id="getAllList" resultType="com.englishweb.vo.WordBoardVO">
-		select * from wordboard 
-		order by boardNo desc
+		SELECT * FROM wordboard 
+		<include refid="search"/>		
+		ORDER BY boardNo DESC 
+		limit #{startArticle}, 10
 	</select>
+	
+	<!-- 목록 전체 수 조회 -->
+	<select id="countArticles" resultType="int">
+		select count(*) from wordboard
+		<include refid="search"/>
+	</select>	
 	
 	<select id="getContentOne" resultType="com.englishweb.vo.WordBoardVO" parameterType="int">
 		select * from wordboard 
@@ -35,6 +56,7 @@
 	</delete>
 
 	<update id="hitUp">
-		update wordboard set viewCnt = viewCnt+1
+		update wordboard set viewCnt = viewCnt+1 
+		where boardNo = #{boardNo}
 	</update>
 </mapper>

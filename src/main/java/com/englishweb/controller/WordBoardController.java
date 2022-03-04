@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.englishweb.commons.PageCreator;
+import com.englishweb.commons.SearchVO;
 import com.englishweb.service.FreeBoardService;
 import com.englishweb.service.WordBoardService;
 import com.englishweb.vo.FreeBoardVO;
@@ -24,9 +26,14 @@ public class WordBoardController {
 	
 	// 자유게시판 목록 불러오기
 	@GetMapping("/wordBoard")
-	public void getWordBoardPage(Model model) {
-		List<WordBoardVO> list = service.getWordBoardList();
+	public void getWordBoardPage(Model model, SearchVO paging) {
+		PageCreator pc = new PageCreator();
+		pc.setPaging(paging);
+		pc.setArticleTotalCount(service.countArticles(paging));
+		paging.setStartArticle(paging.getPage());
+		List<WordBoardVO> list = service.getWordBoardList(paging);
 		model.addAttribute("list", list);
+		model.addAttribute("pc", pc);
 	}
 	
 	// 자유게시판 글쓰기 페이지 요청
