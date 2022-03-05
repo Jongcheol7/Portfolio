@@ -199,5 +199,7 @@ public class LoginJoin {
 		}
 		return result;
 	}
+	
+
 
 }

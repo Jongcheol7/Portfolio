@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,7 @@ public class IdiomBoardController {
 	@Autowired
 	private IdiomBoardService service;
 	
-	// 자유게시판 목록 불러오기
+	// 이디엄 목록 불러오기
 	@GetMapping("/idiomBoard")
 	public void getIdiomBoardPage(Model model, SearchVO paging) {
 		PageCreator pc = new PageCreator();
@@ -38,21 +39,21 @@ public class IdiomBoardController {
 		model.addAttribute("pc", pc);
 	}
 	
-	// 자유게시판 글쓰기 페이지 요청
+	// 글쓰기 페이지 요청
 	@GetMapping("/idiomBoardWrite")
 	public void getIdiomritePage() {
 	}
 	
-	// 자유게시판 글 등록
+	// 글 등록
 	@PostMapping("/idiomBoardWrite")
 	public String registerIdiomBoard(IdiomBoardVO vo) {
 		service.insertIdiomBoard(vo);
 		return "redirect:/board/idiomBoard";
 	}
 
-	// 자유게시판 글 상세내용 확인
+	// 글 상세내용 확인
 	@GetMapping("/idiomBoardContent")
-	public String getIdiomBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) {
+	public String getIdiomBoardContentPage(@RequestParam("boardNo") int boardNo, Model model, @ModelAttribute("pc") SearchVO paging) {
 		IdiomBoardVO vo = service.getIdiomBoardOne(boardNo);
 		System.out.println(vo.getIdiom());
 		model.addAttribute("vo", vo);
@@ -61,21 +62,21 @@ public class IdiomBoardController {
 	
 	// 수정화면 보여주기
 	@GetMapping("/idiomBoardModify")
-	public String updateIdiomBoardForm(int boardNo, Model model) {
+	public String updateIdiomBoardForm(int boardNo, Model model, @ModelAttribute("pc") SearchVO paging) {
 		model.addAttribute("vo", service.getIdiomBoardOne(boardNo));
 		return "/board/idiomBoardUpdate";
 	}
 	// 수정처리
 	@PostMapping("/idiomBoardModify")
-	public String updateIdiomBoard(IdiomBoardVO vo) {
+	public String updateIdiomBoard(IdiomBoardVO vo, SearchVO paging) {
 		service.update(vo);
-		return "redirect:/board/idiomBoard";
+		return "redirect:/board/idiomBoard?page="+paging.getPage()+"&countPerPage="+paging.getCountPerPage();
 	}
 	// 삭제처리
 	@PostMapping("/idiomBoardDetete")
-	public String deleteIdiomBoard(int boardNo) {
+	public String deleteIdiomBoard(int boardNo, SearchVO paging) {
 		service.delete(boardNo);
-		return "redirect:/board/idiomBoard";
+		return "redirect:/board/idiomBoard?page="+paging.getPage()+"&countPerPage="+paging.getCountPerPage();
 	}
 
 

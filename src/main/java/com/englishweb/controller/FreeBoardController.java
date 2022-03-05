@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +55,7 @@ public class FreeBoardController {
 
 	// 자유게시판 글 상세내용 확인
 	@GetMapping("/freeBoardContent")
-	public String getFreeBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) {
+	public String getFreeBoardContentPage(@RequestParam("boardNo") int boardNo, Model model, @ModelAttribute("pc") SearchVO paging) {
 		FreeBoardVO vo = service.getFreeBoardOne(boardNo);
 		System.out.println(vo.getTitle());
 		model.addAttribute("vo", vo);
@@ -63,21 +64,21 @@ public class FreeBoardController {
 	
 	// 수정화면 보여주기
 	@GetMapping("/freeBoardModify")
-	public String updateFreeBoardForm(int boardNo, Model model) {
+	public String updateFreeBoardForm(int boardNo, Model model, @ModelAttribute("pc") SearchVO paging) {
 		model.addAttribute("vo", service.getFreeBoardOne(boardNo));
 		return "/board/freeBoardUpdate";
 	}
 	// 수정처리
 	@PostMapping("/freeBoardModify")
-	public String updateFreeBoard(FreeBoardVO vo) {
+	public String updateFreeBoard(FreeBoardVO vo, SearchVO paging) {
 		service.update(vo);
-		return "redirect:/board/freeBoard";
+		return "redirect:/board/freeBoard?page="+paging.getPage()+"&countPerPage="+paging.getCountPerPage();
 	}
 	// 삭제처리
 	@PostMapping("/freeBoardDetete")
-	public String deleteFreeBoard(int boardNo) {
+	public String deleteFreeBoard(int boardNo, SearchVO paging) {
 		service.delete(boardNo);
-		return "redirect:/board/freeBoard";
+		return "redirect:/board/freeBoard?page="+paging.getPage()+"&countPerPage="+paging.getCountPerPage();
 	}
 	
 

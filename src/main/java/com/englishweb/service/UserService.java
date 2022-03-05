@@ -1,6 +1,7 @@
 package com.englishweb.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +85,26 @@ public class UserService {
 	public List<UserVO> selectAll(){
 		
 		return null;
+	}
+	
+	// 아이디 찾기 (입력한 이메일과 이름이 존재하는지 여부)
+	public int checkNameEmail(Map<String, Object> info) {
+		int result = sqlSessionTemplate.selectOne("userMapper.checkNameEmail", info);
+		return result;
+	}
+	// 이메일로 아이디 찾기
+	public String findIdByEmail(String email) {
+		return sqlSessionTemplate.selectOne("userMapper.findByEmail", email);
+	}
+	// 비밀번호 찾기 (입력한 이메일, 이름, 아이디 조회후 존재하는지 확인)
+	public int checkNameEmailId(Map<String, Object> info) {
+		int result = sqlSessionTemplate.selectOne("userMapper.checkNameEmailId",info);
+		return result;
+	}
+	
+	// 이메일로 임비 비밀번호 바꿔주기
+	public void changeTempPw(Map<String, Object> info) {
+		sqlSessionTemplate.update("userMapper.changeTempPw", info);
 	}
 	
 }

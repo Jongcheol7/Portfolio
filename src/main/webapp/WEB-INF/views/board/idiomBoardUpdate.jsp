@@ -3,6 +3,11 @@
         <section>
             <h1>이디엄 글쓰기</h1>
             <form  method="post" class="contentForm">
+            <input type="hidden" name="boardNo" value="${vo.boardNo }">
+            <input type="hidden" name="page" value="${pc.page }">
+            <input type="hidden" name="countPerPage" value="${pc.countPerPage }">
+            <input type="hidden" name="keyword" value="${pc.keyword }">
+            <input type="hidden" name="condition" value="${pc.condition }">
             	<table class="contentTable">
             		<tr>
             			<td><label for="idiom">이디엄</label></td>
@@ -22,7 +27,7 @@
             	</table>
             	<div class="buttons">
             	<button id="register" type="submit" id="register">등록</button>
-            	<button id="list">목록</button>
+            	<input type="button" value="목록" id="list">
             	</div>
             </form>
         </section>
@@ -30,10 +35,13 @@
 
 <script>
     
-    document.getElementById("list").addEventListener("click",function(e){
-    	e.preventDefault();
-        location.href = "/board/idiomBoard";
-    });
+	$(function() {
+		const formObj = $(".contentForm");
+		$("#list").click(function() {
+			location.href="/board/idiomBoard?page=${pc.page }&countPerPage=${pc.countPerPage}&keyword=${pc.keyword}&condition=${pc.condition}";
+		});
+	
+	});
     
     
 

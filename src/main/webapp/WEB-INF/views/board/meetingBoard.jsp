@@ -17,7 +17,7 @@
                     <c:forEach var="list" items="${list }">
                     <tr id="innerTable">
                     	<td>${list.boardNo }</td>
-                        <td><a href="/board/meetingBoardContent?boardNo=${list.boardNo }">${list.title }</a></td>
+                        <td><a href="/board/meetingBoardContent?boardNo=${list.boardNo }&page=${pc.paging.page }&countPerPage=${pc.paging.countPerPage}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">${list.title }</a></td>
                         <td>${list.writer }</td>
                         <td><fmt:formatDate value="${list.regDate}" pattern="yyyy.MM.dd"/></td>
                         <td>${list.viewCnt }</td>
@@ -29,15 +29,15 @@
                 <div class="paging">
                 	<ul>
                 		<c:if test="${pc.prev }">
-                		<li><a href="/board/meetingBoard?page=${pc.paging.page-1 }&countPerPage=${pc.paging.countPerPage}">이전</a>
+                		<li><a href="/board/meetingBoard?page=${pc.paging.page-1 }&countPerPage=${pc.paging.countPerPage}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">이전</a>
                 		</c:if>
                 		
                 		<c:forEach var="pageNum" begin="${pc.beginPage }" end="${pc.endPage }">
-                		<li><a href="/board/meetingBoard?page=${pageNum}&countPerPage=${pc.paging.countPerPage}" class="${pageNum == pc.paging.page ? 'page-active' : '' }">${pageNum }</a>
+                		<li><a href="/board/meetingBoard?page=${pageNum}&countPerPage=${pc.paging.countPerPage}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}" class="${pageNum == pc.paging.page ? 'page-active' : '' }">${pageNum }</a>
                 		</c:forEach>
                 		
                 		<c:if test="${pc.next }">
-                		<li><a href="/board/meetingBoard?page=${pc.paging.page+1 }&countPerPage=${pc.paging.countPerPage}">다음</a>
+                		<li><a href="/board/meetingBoard?page=${pc.paging.page+1 }&countPerPage=${pc.paging.countPerPage}&keyword=${pc.paging.keyword}&condition=${pc.paging.condition}">다음</a>
                 		</c:if>
                 	</ul>
                 </div>

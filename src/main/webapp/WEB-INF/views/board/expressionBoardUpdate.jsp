@@ -4,6 +4,10 @@
             <h1>영어표현</h1>
             <form  method="post" class="contentForm">
             <input type="hidden" name="boardNo" value="${vo.boardNo }">
+            <input type="hidden" name="page" value="${pc.page }">
+            <input type="hidden" name="countPerPage" value="${pc.countPerPage }">
+            <input type="hidden" name="keyword" value="${pc.keyword }">
+            <input type="hidden" name="condition" value="${pc.condition }">
             	<table class="contentTable">
             		<tr>
             			<td><label for="expression">영어표현</label></td>
@@ -23,22 +27,17 @@
             	</table>
             	<div class="buttons">
 					<button id="modify">수정</button>
-					<button id="list">목록</button>
+					<input type="button" value="목록" id="list">
 				</div>
             </form>
         </section>
 
 <script>
     
-    document.getElementById("list").addEventListener("click",function(e){
-    	e.preventDefault();
-        location.href = "/board/expressionBoard";
-    });
-    
 	$(function() {
 		const formObj = $(".contentForm");
 		$("#list").click(function() {
-			location.href="/board/expressionBoard";
+			location.href="/board/expressionBoard?page=${pc.page }&countPerPage=${pc.countPerPage}&keyword=${pc.keyword}&condition=${pc.condition}";
 		});
 	});
 

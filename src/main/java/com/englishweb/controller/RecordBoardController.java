@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,13 +76,7 @@ public class RecordBoardController {
 
 	// 영어녹음게시판 글 상세내용 확인
 	@GetMapping("/recordBoardContent")
-	public String getRecordBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) {
-//		RecordBoardVO vo = service.getRecordBoardOne(boardNo);
-//		System.out.println(vo.getTitle());
-//		System.out.println(vo.getRecordFileName());
-//		model.addAttribute("vo", vo);
-//		return "board/recordBoardContent";
-		
+	public String getRecordBoardContentPage(@RequestParam("boardNo") int boardNo, Model model, @ModelAttribute("pc") SearchVO paging) {
 		Map<String, Object> resultBoard = service.detailFile(boardNo);
 		model.addAttribute("vo", resultBoard.get("content"));
 		model.addAttribute("file", resultBoard.get("file"));
@@ -90,21 +85,21 @@ public class RecordBoardController {
 	
 	// 수정화면 보여주기
 	@GetMapping("/recordBoardModify")
-	public String updateRecordBoardForm(int boardNo, Model model) {
+	public String updateRecordBoardForm(int boardNo, Model model, @ModelAttribute("pc") SearchVO paging) {
 		model.addAttribute("vo", service.getRecordBoardOne(boardNo));
 		return "/board/recordBoardUpdate";
 	}
 	// 수정처리
 	@PostMapping("/recordBoardModify")
-	public String updateRecordBoard(RecordBoardVO vo) {
+	public String updateRecordBoard(RecordBoardVO vo, SearchVO paging) {
 		service.update(vo);
-		return "redirect:/board/recordBoard";
+		return "redirect:/board/recordBoard?page="+paging.getPage()+"&countPerPage="+paging.getCountPerPage();
 	}
 	// 삭제처리
 	@PostMapping("/recordBoardDetete")
-	public String deleteRecordBoard(int boardNo) {
+	public String deleteRecordBoard(int boardNo, SearchVO paging) {
 		service.delete(boardNo);
-		return "redirect:/board/recordBoard";
+		return "redirect:/board/recordBoard?page="+paging.getPage()+"&countPerPage="+paging.getCountPerPage();
 	}
 
 	

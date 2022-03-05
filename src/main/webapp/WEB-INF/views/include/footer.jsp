@@ -13,23 +13,24 @@
                 <form action="#" method="post">
                     <input type="text" placeholder="아이디" name="userId" id="signInId">
                     <input type="password" placeholder="비밀번호" name="userPw" id="signInPw">
-                    <label for="save-id"><input type="checkbox" name="save-id" id="save-id">아이디 저장</label>
+                    <!-- <label for="save-id"><input type="checkbox" name="save-id" id="save-id" value="save-id">아이디 저장</label> -->
                     <button type="submit" id="signInBtn">로그인</button>
                     <ul>
-                        <li><a href="#">ID/PW 찾기</a></li>
+                        <li><a href="/user/findID">ID 찾기</a></li>
+                        <li><a href="/user/findPW">PW 찾기</a></li>
                         <li><a href="#">회원가입</a></li>
                     </ul>
                 </form>
             </div>
             <div class="right">
-                <img src="images/ad1.jpg" alt="">
+                <img src="/img/logo.jpg" alt="">
             </div>
         </div>
     </div>
     <!-- 회원가입 모달 -->
     <div class="register">
         <form action="#" method="post">
-            <h1>Jong's Movie</h1>
+            <h1>JOIN ENGLISH</h1>
             <label for="userId">아이디<span id="idSpace"></span></label><br>
             <input type="text" id="userId" name="userId"><br>
             <label for="userPw">비밀번호<span id="pwSpace"></span></label><br>
@@ -82,6 +83,21 @@
 	document.querySelector("#login").addEventListener("click", function () {
 	    document.getElementsByClassName("login-modal")[0].style.display = "flex";
 	    document.getElementsByClassName("container")[0].style.opacity = 0.3;
+	    
+	    /*
+	    $(function() {
+		// 체크박스 해제시 저장된 아이디 쿠키값 삭제
+		if($('#save-id').is(":checked") == false){
+			console.log("삭제할 쿠키이름 : " + getCookie("saveId"));
+			deleteCookie(getCookie("saveId"));
+			console.log("쿠키 삭제 완료");
+			$("#signInId").attr('value',getCookie(""));
+			$("#save-id").prop('checked', false);
+		}
+	    })
+		*/
+
+	    
 	});
 	document.getElementById("close-login").addEventListener("click", function () {
 	    document.getElementsByClassName("login-modal")[0].style.display = "none";
@@ -494,11 +510,13 @@
 			}
 		}); 
 		
-		// 로그인 버튼 클릭 이벤트
 		
+		
+		
+		// 로그인 버튼 클릭
 		$("#signInBtn").click(function(e) {
 			e.preventDefault();
-			console.log("로그인 버튼 클릭됨");
+	
 			if(chk1 && chk2){
 				const id = $("#signInId").val();
 				const pw = $("#signInPw").val();
@@ -546,8 +564,23 @@
 		});
 		
 		
-		
-		
-		
+	
 	}); //end jQuery
+	
+	
+	function setCookie(cName, cValue, exp){
+		var date = new Date();
+		date.setTime(date.getTime() + exp*24*60*60*1000);
+		document.cookie = cName + '=' + cValue + ';expires=' + date.toUTCString() + ';path=/';
+	}
+	function getCookie(name){
+		var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+		return value?value[2]:null;
+	}
+	function deleteCookie(name){
+		document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+	}
+	
+	
+	
 </script>

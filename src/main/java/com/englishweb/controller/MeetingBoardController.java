@@ -26,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,16 +68,15 @@ public class MeetingBoardController {
 		model.addAttribute("pc", pc);
 	}
 	
-	// 영어녹음게시판 글쓰기 페이지 요청
+	// 글쓰기 페이지 요청
 	@GetMapping("/meetingBoardWrite")
 	public void getMeetingBoardWritePage() {
 	}
 	
 	
-	
-	// 영어녹음게시판 글 상세내용 확인
+	// 글 상세내용 확인
 	@GetMapping("/meetingBoardContent")
-	public String getMeetingBoardContentPage(@RequestParam("boardNo") int boardNo, Model model) {
+	public String getMeetingBoardContentPage(@RequestParam("boardNo") int boardNo, Model model, @ModelAttribute("pc") SearchVO paging) {
 		Map<String, Object> resultBoard = service.detailFile(boardNo);
 		model.addAttribute("vo", resultBoard.get("content"));
 		model.addAttribute("file", resultBoard.get("file"));
@@ -84,26 +84,24 @@ public class MeetingBoardController {
 		return "board/meetingBoardContent";
 	}
 	
-	
-	
-		// 수정화면 보여주기
-		@GetMapping("/meetingBoardModify")
-		public String updateMeetingBoardForm(int boardNo, Model model) {
-			model.addAttribute("vo", service.getMeetingBoardOne(boardNo));
-			return "/board/meetingBoardUpdate";
-		}
-		// 수정처리
-		@PostMapping("/meetingBoardModify")
-		public String updateMeetingBoard(MeetingBoardVO vo) {
-			service.update(vo);
-			return "redirect:/board/meetingBoard";
-		}
-		// 삭제처리
-		@PostMapping("/meetingBoardDetete")
-		public String deleteMeetingBoard(int boardNo) {
-			service.delete(boardNo);
-			return "redirect:/board/meetingBoard";
-		}
+	// 수정화면 보여주기
+	@GetMapping("/meetingBoardModify")
+	public String updateMeetingBoardForm(int boardNo, Model model, @ModelAttribute("pc") SearchVO paging) {
+		model.addAttribute("vo", service.getMeetingBoardOne(boardNo));
+		return "/board/meetingBoardUpdate";
+	}
+	// 수정처리
+	@PostMapping("/meetingBoardModify")
+	public String updateMeetingBoard(MeetingBoardVO vo, SearchVO paging) {
+		service.update(vo);
+		return "redirect:/board/meetingBoard?page="+paging.getPage()+"&countPerPage="+paging.getCountPerPage();
+	}
+	// 삭제처리
+	@PostMapping("/meetingBoardDetete")
+	public String deleteMeetingBoard(int boardNo, SearchVO paging) {
+		service.delete(boardNo);
+		return "redirect:/board/meetingBoard?page="+paging.getPage()+"&countPerPage="+paging.getCountPerPage();
+	}
 	
 
 }

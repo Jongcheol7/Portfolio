@@ -5,6 +5,8 @@
             <h1>공지사항 글쓰기</h1>
             <form  method="post"  class="contentForm"  action="/board/noticeBoardDetete">
             <input type="hidden" name="boardNo" value="${vo.boardNo }">
+            <input type="hidden" name="page" value="${pc.page }">
+            <input type="hidden" name="countPerPage" value="${pc.countPerPage }">
             	<table class="contentTable">
             		<tr>
             			<td><label for="title">제목</label></td>
@@ -27,21 +29,17 @@
 					<button type="submit" id="modify">수정</button>
 					<button id="delete">삭제</button>
 				</c:if>
-				<button id="list">목록</button>
+				<input type="button" value="목록" id="list">
 			</div>
 	</form>
         </section>
 
 <script>
-	document.getElementById("list").addEventListener("click", function(e) {
-		e.preventDefault();
-		location.href = "/board/noticeBoard";
-	});
 
 	$(function() {
 		const formObj = $(".contentForm");
 		$("#list").click(function() {
-			location.href="/board/noticeBoard";
+			location.href="/board/noticeBoard?page=${pc.page }&countPerPage=${pc.countPerPage}&keyword=${pc.keyword}&condition=${pc.condition}";
 		});
 		$("#modify").click(function() {
 			formObj.attr("action", "/board/noticeBoardModify");

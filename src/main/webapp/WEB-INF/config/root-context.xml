@@ -48,18 +48,25 @@
 		<beans:property name="transactionManager" ref="transactionManager"/>
 	</beans:bean>
 	
-	<!-- 3번째 방법 이것도 맨위가 선언 되있어야 한다-->
-	<!-- aop로 트랜잭션 주는 방식 -->
-	<!-- 이건 서블릿컨텍스트에 넣어야한다. 여기에는 작동 안됨 
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="txData*" propagation="REQUIRED"/>
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:pointcut expression="execution( * kr.co..*.*(..))" id="firstTransactionMethod"/>
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="firstTransactionMethod"/>
-	</aop:config>-->
+	<!-- 메일 -->
+<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<beans:property name="host" value="smtp.naver.com" />
+	<beans:property name="port" value="465" />
+	<beans:property name="username" value="whdcjf817" />
+	<beans:property name="password" value="whdcjfz" />
+	<beans:property name="defaultEncoding" value="utf-8" />
+	<beans:property name="javaMailProperties">
+		<beans:props>
+			<beans:prop key="mail.debug">true</beans:prop>
+			<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+			<beans:prop key="mail.smtp.ssl.enable">true</beans:prop>
+			<beans:prop key="mail.smtps.ssl.checkserveridentity">true</beans:prop>
+			<beans:prop key="mail.smtp.auth">true</beans:prop>
+			<beans:prop key="mail.smtps.ssl.trust">*</beans:prop>
+			<beans:prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</beans:prop>
+		</beans:props>
+	</beans:property>
+</beans:bean>
 
 </beans:beans>
 
